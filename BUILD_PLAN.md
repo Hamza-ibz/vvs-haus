@@ -4,19 +4,32 @@
 
 - [ ] Confirm the React/Vite project runs locally.
 - [ ] Confirm Tailwind CSS is configured and working.
-- [ ] Confirm Framer Motion, GSAP, and Lucide React Icons are available.
-- [ ] Establish the planned folder structure under `src/`.
+- [ ] Confirm Framer Motion, GSAP, Lucide React Icons, and react-router-dom are available.
+- [ ] Establish the planned folder structure under `src/`, including `src/pages/`.
 - [ ] Define global brand tokens for black, charcoal, white, and cyan.
 - [ ] Confirm font loading strategy for Orbitron and Inter.
 - [ ] Run `npm run lint`.
 - [ ] Run `npm run build`.
 - [ ] Commit the baseline once verified.
 
-## Phase 2: Visual System
+## Phase 2: Routing And Shared Layout
+
+- [ ] Explain the routing and shared layout architecture before coding.
+- [ ] Install or confirm `react-router-dom` only when package changes are approved.
+- [ ] Create page-level route components in `src/pages/`.
+- [ ] Configure routes for `/`, `/services`, `/gallery`, `/about`, and `/contact`.
+- [ ] Keep `Navbar` and `Footer` shared across pages.
+- [ ] Make navbar links route to pages, not section anchors.
+- [ ] Make `Book Now` route to `/contact`.
+- [ ] Run `npm run lint`.
+- [ ] Run `npm run build`.
+- [ ] Commit routing and shared layout.
+
+## Phase 3: Visual System
 
 - [ ] Create shared layout primitives.
 - [ ] Create shared button styles.
-- [ ] Create shared section spacing patterns.
+- [ ] Create shared page and section spacing patterns.
 - [ ] Create reusable glow, border, and dark surface treatments.
 - [ ] Define animation defaults for reveal timing and easing.
 - [ ] Test visual consistency on mobile and desktop.
@@ -24,127 +37,99 @@
 - [ ] Run `npm run build`.
 - [ ] Commit the visual system.
 
-## Phase 3: Loading Screen
+## Phase 4: Loading Screen
 
 - [ ] Explain the loading screen architecture before coding.
-- [ ] Build the loading screen as its own section or component.
-- [ ] Add premium motion using Framer Motion or GSAP.
+- [ ] Build the loading screen as its own reusable component.
+- [ ] Add premium motion using Framer Motion.
 - [ ] Keep the sequence short, cinematic, and brand-focused.
 - [ ] Test loading state behavior.
 - [ ] Run `npm run lint`.
 - [ ] Run `npm run build`.
 - [ ] Commit the loading screen.
 
-## Phase 4: Hero Section
+## Phase 5: Home Page Hero
 
-- [ ] Explain the hero architecture before coding.
-- [ ] Use Mercedes-only visual direction.
-- [ ] Add strong premium positioning and clear booking intent.
-- [ ] Include cinematic dark styling and subtle cyan glow.
-- [ ] Make the first viewport polished on mobile and desktop.
+- [ ] Explain the Home page hero architecture before coding.
+- [ ] Match the confirmed visual reference direction.
+- [ ] Use a shared navbar at the top.
+- [ ] Place the VVS Haus logo on the left.
+- [ ] Center the navigation links.
+- [ ] Place the `Book Now` button on the right.
+- [ ] Use a dark cinematic warehouse background.
+- [ ] Show a branded mobile detailing van on the left.
+- [ ] Show a Mercedes vehicle on the right.
+- [ ] Show a large glowing VVS diamond/logo in the center.
+- [ ] Use main text: `PRECISION MOBILE DETAILING`.
+- [ ] Use subtitle: `Luxury care. German precision. Built different.`
+- [ ] Add buttons: `Book Your Detail` and `View Services`.
+- [ ] Add bottom feature strip: `Mobile Service`, `Premium Products`, `German Precision`, `Satisfaction Guaranteed`.
+- [ ] Keep service cards, gallery content, about content, social content, and footer content out of the hero viewport.
 - [ ] Run `npm run lint`.
 - [ ] Run `npm run build`.
-- [ ] Commit the hero section.
+- [ ] Commit the Home page hero.
 
-## Phase 5: Features Section
+## Phase 6: Services Page
 
-- [ ] Explain the features architecture before coding.
-- [ ] Define feature content in a small reusable data structure if needed.
-- [ ] Use Lucide icons where they improve scannability.
-- [ ] Keep cards or panels minimal, dark, and high-end.
-- [ ] Test responsive wrapping and text fit.
-- [ ] Run `npm run lint`.
-- [ ] Run `npm run build`.
-- [ ] Commit the features section.
-
-## Phase 6: Services Section
-
-- [ ] Explain the services architecture before coding.
-- [ ] Present detailing services clearly and professionally.
-- [ ] Make packages or service tiers easy to compare.
-- [ ] Include booking-oriented calls to action.
+- [ ] Explain the Services page architecture before coding.
+- [ ] Build the full services menu.
+- [ ] Build service packages.
+- [ ] Build the process section.
+- [ ] Add a booking CTA that routes to `/contact`.
+- [ ] Keep content clear, premium, and conversion-focused.
 - [ ] Test mobile readability and hierarchy.
 - [ ] Run `npm run lint`.
 - [ ] Run `npm run build`.
-- [ ] Commit the services section.
+- [ ] Commit the Services page.
 
-## Phase 7: About Section
+## Phase 7: Gallery Page
 
-- [ ] Explain the about section architecture before coding.
-- [ ] Communicate premium care, trust, and expertise.
-- [ ] Keep the copy concise and high-confidence.
-- [ ] Use restrained visual support and cinematic spacing.
-- [ ] Test responsive layout.
-- [ ] Run `npm run lint`.
-- [ ] Run `npm run build`.
-- [ ] Commit the about section.
-
-## Phase 8: Gallery Section
-
-- [ ] Explain the gallery architecture before coding.
+- [ ] Explain the Gallery page architecture before coding.
 - [ ] Use Mercedes-only imagery.
 - [ ] Do not include BMW, Audi, Porsche, Lamborghini, or other brands.
-- [ ] Optimize layout for visual impact and fast scanning.
+- [ ] Build transformations content.
+- [ ] Build before/after image content.
+- [ ] Build a gallery grid.
+- [ ] Add a booking CTA that routes to `/contact`.
 - [ ] Test image sizing, cropping, and loading behavior.
 - [ ] Run `npm run lint`.
 - [ ] Run `npm run build`.
-- [ ] Commit the gallery section.
+- [ ] Commit the Gallery page.
 
-## Phase 9: Before And After Section
+## Phase 8: About Page
 
-- [ ] Explain the before and after architecture before coding.
-- [ ] Choose an interaction pattern that works on touch and desktop.
-- [ ] Keep comparisons clear, credible, and premium.
-- [ ] Test interaction states and responsive behavior.
+- [ ] Explain the About page architecture before coding.
+- [ ] Build brand story content.
+- [ ] Build values content.
+- [ ] Build why choose us content.
+- [ ] Build founder/equipment content.
+- [ ] Add a booking CTA that routes to `/contact`.
+- [ ] Keep the copy concise and high-confidence.
+- [ ] Test responsive layout.
 - [ ] Run `npm run lint`.
 - [ ] Run `npm run build`.
-- [ ] Commit the before and after section.
+- [ ] Commit the About page.
 
-## Phase 10: Social Media Section
+## Phase 9: Contact / Booking Page
 
-- [ ] Explain the social media architecture before coding.
-- [ ] Highlight social proof without clutter.
-- [ ] Use premium dark styling and restrained motion.
-- [ ] Include clear links or calls to action.
-- [ ] Test layout on mobile and desktop.
-- [ ] Run `npm run lint`.
-- [ ] Run `npm run build`.
-- [ ] Commit the social media section.
-
-## Phase 11: Booking Section
-
-- [ ] Explain the booking architecture before coding.
-- [ ] Make the booking flow direct and conversion-focused.
+- [ ] Explain the Contact page architecture before coding.
+- [ ] Build the booking form.
+- [ ] Add contact details.
+- [ ] Add WhatsApp CTA.
+- [ ] Add service area content.
+- [ ] Include footer content on this page.
 - [ ] Keep form fields accessible and easy to complete.
 - [ ] Add validation or integration only when requested.
 - [ ] Test keyboard navigation and mobile usability.
 - [ ] Run `npm run lint`.
 - [ ] Run `npm run build`.
-- [ ] Commit the booking section.
+- [ ] Commit the Contact page.
 
-## Phase 12: Final CTA Section
+## Phase 10: Full Site QA
 
-- [ ] Explain the final CTA architecture before coding.
-- [ ] Reinforce premium Mercedes-focused detailing.
-- [ ] Provide a clear booking action.
-- [ ] Keep the visual treatment cinematic and minimal.
-- [ ] Run `npm run lint`.
-- [ ] Run `npm run build`.
-- [ ] Commit the final CTA section.
-
-## Phase 13: Footer
-
-- [ ] Explain the footer architecture before coding.
-- [ ] Add essential navigation, contact, and social links.
-- [ ] Keep the footer clean, dark, and premium.
-- [ ] Test responsiveness and link states.
-- [ ] Run `npm run lint`.
-- [ ] Run `npm run build`.
-- [ ] Commit the footer.
-
-## Phase 14: Full Site QA
-
-- [ ] Review all sections together for visual consistency.
+- [ ] Review all pages together for visual consistency.
+- [ ] Verify route navigation works for `/`, `/services`, `/gallery`, `/about`, and `/contact`.
+- [ ] Verify navbar links do not rely on anchor-scroll navigation as the primary structure.
 - [ ] Check mobile, tablet, laptop, and wide desktop layouts.
 - [ ] Verify there are no non-Mercedes vehicle references.
 - [ ] Verify brand colors and fonts are used consistently.
@@ -155,7 +140,7 @@
 - [ ] Run `npm run preview`.
 - [ ] Commit final QA fixes.
 
-## Phase 15: Deployment
+## Phase 11: Deployment
 
 - [ ] Choose the deployment target.
 - [ ] Configure environment variables if needed.
@@ -163,4 +148,5 @@
 - [ ] Preview the production build locally.
 - [ ] Deploy the site.
 - [ ] Verify the live URL on mobile and desktop.
+- [ ] Verify direct page loads work for every route.
 - [ ] Commit deployment configuration changes.
