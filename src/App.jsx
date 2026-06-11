@@ -1,33 +1,30 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import LoadingScreen from './components/sections/LoadingScreen'
-import Hero from './components/sections/Hero'
-import Features from './components/sections/Features'
-import Services from './components/sections/Services'
-import About from './components/sections/About'
-import Gallery from './components/sections/Gallery'
-import BeforeAfter from './components/sections/BeforeAfter'
-import SocialMedia from './components/sections/SocialMedia'
-import Booking from './components/sections/Booking'
-import FinalCTA from './components/sections/FinalCTA'
+import Home from './pages/Home'
+import Services from './pages/Services'
+import Gallery from './pages/Gallery'
+import About from './pages/About'
+import Contact from './pages/Contact'
 import './App.css'
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <LoadingScreen />
       <Navbar />
-      <Hero />
-      <Features />
-      <Services />
-      <About />
-      <Gallery />
-      <BeforeAfter />
-      <SocialMedia />
-      <Booking />
-      <FinalCTA />
+      <main>
+        <Routes>
+          <Route element={<Home />} path="/" />
+          <Route element={<Services />} path="/services" />
+          <Route element={<Gallery />} path="/gallery" />
+          <Route element={<About />} path="/about" />
+          <Route element={<Contact />} path="/contact" />
+        </Routes>
+      </main>
       <Footer />
-    </>
+    </BrowserRouter>
   )
 }
 
