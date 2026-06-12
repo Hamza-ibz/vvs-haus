@@ -5,7 +5,7 @@ function Footer() {
         <img
           alt="VVS Haus"
           className="h-10 w-auto object-contain sm:h-12"
-          src="/assets/logos/logo-transparent.png"
+          src="/assets/logos/logo.png"
         />
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/45">
           VVS Haus footer placeholder

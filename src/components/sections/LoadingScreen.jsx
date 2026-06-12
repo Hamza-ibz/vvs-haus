@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
-const logoSrc = '/assets/logos/logo-diamond-transparent.png'
+const logoSrc = '/assets/logos/logo.png'
 
 function LoadingScreen() {
   const [isVisible, setIsVisible] = useState(true)

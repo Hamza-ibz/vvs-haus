@@ -2,7 +2,7 @@ import { ChevronRight, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
-const logoSrc = '/assets/logos/logo-transparent.png'
+const logoSrc = '/assets/logos/logo.png'
 
 const navLinks = [
   { label: 'Home', to: '/' },
@@ -21,14 +21,14 @@ function Navbar() {
 
   const getLinkClass = ({ isActive }) =>
     [
-      'relative px-1 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] transition duration-300 ease-out',
+      'relative px-1 py-2 text-sm font-semibold uppercase tracking-[0.18em] transition duration-300 ease-out',
       isActive
         ? 'text-white after:absolute after:inset-x-1 after:-bottom-1 after:h-px after:bg-cyan-300 after:shadow-[0_0_14px_rgba(0,217,255,0.75)]'
         : 'text-white/62 hover:text-cyan-200',
     ].join(' ')
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 px-5 py-5 sm:px-8 lg:px-12">
+    <header className="fixed inset-x-0 top-0 z-40 px-5 py-5 sm:px-8 lg:px-16 2xl:px-20">
       <div className="mx-auto grid max-w-[92rem] grid-cols-[auto_1fr_auto] items-center gap-4">
         <Link
           aria-label="VVS Haus home"
@@ -45,7 +45,7 @@ function Navbar() {
 
         <nav
           aria-label="Main navigation"
-          className="hidden items-center justify-center gap-12 lg:flex"
+          className="hidden items-center justify-center gap-9 xl:gap-10 lg:flex"
         >
           {navLinks.map((link) => (
             <NavLink className={getLinkClass} key={link.to} to={link.to}>

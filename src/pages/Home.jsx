@@ -2,9 +2,8 @@ import { motion } from 'framer-motion'
 import { ChevronDown, ChevronRight, ShieldCheck, Sparkles, Truck, Wrench } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-const vanImage = '/assets/images/van-with-logo.jpg'
-const vehicleImage = '/assets/images/mercedes-back.jpg'
-const diamondLogo = '/assets/logos/logo-diamond-transparent.png'
+const heroBackground = '/assets/images/new-home-wallpaper.jpg'
+const heroLogo = '/assets/logos/logo.png'
 
 const featureStrip = [
   {
@@ -52,11 +51,19 @@ const item = {
 function Home() {
   return (
     <section className="relative left-1/2 h-svh min-h-[700px] w-screen -translate-x-1/2 overflow-hidden bg-[#050505] px-5 pb-4 pt-24 text-white sm:px-8 lg:min-h-0 lg:px-12">
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,#050505_0%,#111111_46%,#050505_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(0,217,255,0.12),transparent_17rem)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.88)_0%,rgba(5,5,5,0.35)_28%,rgba(5,5,5,0.18)_50%,rgba(5,5,5,0.42)_72%,rgba(5,5,5,0.9)_100%)]" />
-      <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-[#050505] to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#050505] via-[#050505]/78 to-transparent" />
+      <motion.img
+        alt="VVS Haus cinematic mobile detailing background"
+        animate={{ opacity: 1, scale: 1.025 }}
+        className="absolute inset-0 h-full w-full object-cover object-[center_56%] brightness-[1.3] contrast-[1.08]"
+        initial={{ opacity: 0, scale: 1.06 }}
+        src={heroBackground}
+        transition={{ duration: 1.3, ease: 'easeOut' }}
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.34)_0%,rgba(5,5,5,0.06)_34%,rgba(5,5,5,0.1)_60%,rgba(5,5,5,0.62)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_31%,rgba(0,217,255,0.055),transparent_18rem)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.38)_0%,rgba(5,5,5,0.08)_28%,rgba(5,5,5,0.04)_50%,rgba(5,5,5,0.09)_72%,rgba(5,5,5,0.44)_100%)]" />
+      <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-[#050505]/70 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#050505]/82 via-[#050505]/42 to-transparent" />
       <motion.div
         aria-hidden="true"
         animate={{ x: ['-120%', '120%'], opacity: [0, 0.32, 0] }}
@@ -65,71 +72,47 @@ function Home() {
         transition={{ delay: 1.1, duration: 4.8, ease: 'easeInOut', repeat: Infinity, repeatDelay: 4 }}
       />
 
-      <motion.img
-        alt="VVS Haus branded mobile detailing van"
-        animate={{ opacity: 0.74, x: 0, scale: 1, y: [0, -5, 0] }}
-        className="absolute bottom-[8.6rem] left-[-9.5rem] hidden w-[46rem] max-w-none object-contain shadow-[0_34px_120px_rgba(0,0,0,0.7)] xl:block 2xl:left-[-4.5rem] 2xl:w-[52rem]"
-        initial={{ opacity: 0, x: -46, scale: 0.98 }}
-        src={vanImage}
-        transition={{
-          duration: 1.15,
-          ease: 'easeOut',
-          y: { delay: 1.2, duration: 8.5, ease: 'easeInOut', repeat: Infinity },
-        }}
-      />
-
-      <motion.img
-        alt="Premium Mercedes vehicle detailed by VVS Haus"
-        animate={{ opacity: 0.76, x: 0, scale: 1, y: [0, -4, 0] }}
-        className="absolute bottom-[8.6rem] right-[-10.5rem] hidden w-[47rem] max-w-none object-contain shadow-[0_34px_120px_rgba(0,0,0,0.72)] lg:block 2xl:right-[-4rem] 2xl:w-[53rem]"
-        initial={{ opacity: 0, x: 46, scale: 0.98 }}
-        src={vehicleImage}
-        transition={{
-          duration: 1.15,
-          ease: 'easeOut',
-          y: { delay: 1.45, duration: 7.8, ease: 'easeInOut', repeat: Infinity },
-        }}
-      />
-
       <motion.div
         animate="visible"
         className="relative z-10 mx-auto flex h-full max-w-[92rem] flex-col items-center justify-end text-center"
         initial="hidden"
         variants={container}
       >
-        <div className="flex w-full flex-1 flex-col items-center justify-center pb-1 pt-2 lg:pt-8">
+        <div className="flex w-full flex-1 flex-col items-center justify-center pb-1 pt-2 lg:mt-10 lg:pt-0">
           <motion.div
-            className="relative mb-0 flex h-[13.5rem] w-[13.5rem] items-center justify-center overflow-hidden sm:h-[18rem] sm:w-[18rem] lg:h-[23rem] lg:w-[23rem] 2xl:h-[25rem] 2xl:w-[25rem]"
+            className="relative -mb-6 flex h-[16.5rem] w-[16.5rem] items-center justify-center overflow-visible sm:-mb-9 sm:h-[23rem] sm:w-[23rem] lg:-mb-16 lg:h-[34rem] lg:w-[34rem] 2xl:-mb-20 2xl:h-[36rem] 2xl:w-[36rem]"
             variants={item}
           >
-            <motion.img
-              alt="VVS Haus diamond"
-              animate={{
-                filter: [
-                  'drop-shadow(0 0 18px rgba(0,217,255,0.7))',
-                  'drop-shadow(0 0 28px rgba(0,217,255,0.82))',
-                  'drop-shadow(0 0 18px rgba(0,217,255,0.7))',
-                ],
-                y: [0, -7, 0],
-              }}
-              className="relative h-full w-full object-contain drop-shadow-[0_0_18px_rgba(0,217,255,0.7)]"
-              src={diamondLogo}
-              transition={{
-                filter: { duration: 4.8, ease: 'easeInOut', repeat: Infinity },
-                y: { duration: 5.8, ease: 'easeInOut', repeat: Infinity },
-              }}
-            />
-            <motion.span
-              aria-hidden="true"
-              animate={{ opacity: [0, 1, 0, 0, 1, 0], x: ['-145%', '145%', '145%', '-145%', '-145%', '145%'] }}
-              className="pointer-events-none absolute inset-y-10 w-1/3 rotate-12 bg-gradient-to-r from-transparent via-white/35 to-transparent blur-sm"
-              initial={{ x: '-145%' }}
-              transition={{ delay: 1.5, duration: 6.8, ease: 'easeInOut', repeat: Infinity }}
-            />
+            <div className="relative h-full w-full translate-y-9 overflow-hidden sm:translate-y-12 lg:translate-y-16">
+              <motion.img
+                alt="VVS Haus diamond"
+                animate={{
+                  filter: [
+                    'drop-shadow(0 0 14px rgba(0,217,255,0.58))',
+                    'drop-shadow(0 0 22px rgba(0,217,255,0.72))',
+                    'drop-shadow(0 0 14px rgba(0,217,255,0.58))',
+                  ],
+                  y: [0, -7, 0],
+                }}
+                className="relative h-full w-full object-contain drop-shadow-[0_0_14px_rgba(0,217,255,0.58)]"
+                src={heroLogo}
+                transition={{
+                  filter: { duration: 4.8, ease: 'easeInOut', repeat: Infinity },
+                  y: { duration: 5.8, ease: 'easeInOut', repeat: Infinity },
+                }}
+              />
+              <motion.span
+                aria-hidden="true"
+                animate={{ opacity: [0, 1, 0, 0, 1, 0], x: ['-145%', '145%', '145%', '-145%', '-145%', '145%'] }}
+                className="pointer-events-none absolute inset-y-10 w-1/3 rotate-12 bg-gradient-to-r from-transparent via-white/35 to-transparent blur-sm"
+                initial={{ x: '-145%' }}
+                transition={{ delay: 1.5, duration: 6.8, ease: 'easeInOut', repeat: Infinity }}
+              />
+            </div>
           </motion.div>
 
           <motion.p
-            className="mb-2 font-['Orbitron'] text-sm uppercase tracking-[0.58em] text-white/86 sm:text-base lg:text-lg"
+            className="mb-2 font-['Orbitron'] text-base uppercase tracking-[0.58em] text-white/86 sm:text-lg lg:text-2xl"
             variants={item}
           >
             Precision
