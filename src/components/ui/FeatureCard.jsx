@@ -1,5 +1,7 @@
+import { isValidElement } from 'react'
+
 function FeatureCard({ icon, title, description, className = '' }) {
-  const Icon = typeof icon === 'function' ? icon : null
+  const Icon = icon && !isValidElement(icon) ? icon : null
 
   return (
     <article
