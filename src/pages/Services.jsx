@@ -76,7 +76,7 @@ function Services() {
       <section className="relative overflow-hidden border-b border-white/10 bg-[#050505] pt-32 sm:pt-36 lg:pt-28">
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(circle_at_72%_34%,rgba(0,217,255,0.14),transparent_25rem),linear-gradient(180deg,#050505_0%,#080808_55%,#050505_100%)]"
+          className="absolute inset-0 bg-[#050505]"
         />
         <div
           aria-hidden="true"
