@@ -1,8 +1,8 @@
-import { Menu, X } from 'lucide-react'
+import { ChevronRight, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
-const logoSrc = '/assets/logos/vvs-haus-logo-white.png .png'
+const logoSrc = '/assets/logos/logo-transparent.png'
 
 const navLinks = [
   { label: 'Home', to: '/' },
@@ -28,8 +28,8 @@ function Navbar() {
     ].join(' ')
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 px-4 py-4 sm:px-6 lg:px-8">
-      <div className="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 rounded-full border border-white/10 bg-[#050505]/72 px-4 py-3 shadow-[0_18px_70px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:px-6">
+    <header className="fixed inset-x-0 top-0 z-40 px-5 py-5 sm:px-8 lg:px-12">
+      <div className="mx-auto grid max-w-[92rem] grid-cols-[auto_1fr_auto] items-center gap-4">
         <Link
           aria-label="VVS Haus home"
           className="flex items-center"
@@ -38,14 +38,14 @@ function Navbar() {
         >
           <img
             alt="VVS Haus"
-            className="h-8 w-auto object-contain sm:h-9"
+            className="h-14 w-auto object-contain sm:h-16 lg:h-20"
             src={logoSrc}
           />
         </Link>
 
         <nav
           aria-label="Main navigation"
-          className="hidden items-center justify-center gap-7 lg:flex"
+          className="hidden items-center justify-center gap-12 lg:flex"
         >
           {navLinks.map((link) => (
             <NavLink className={getLinkClass} key={link.to} to={link.to}>
@@ -56,17 +56,22 @@ function Navbar() {
 
         <div className="hidden justify-end lg:flex">
           <Link
-            className="inline-flex items-center justify-center rounded-full border border-cyan-300/70 bg-cyan-300 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-black shadow-[0_0_26px_rgba(0,217,255,0.24)] transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_38px_rgba(0,217,255,0.36)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+            className="group inline-flex items-center justify-center gap-3 border border-cyan-300/70 bg-black/20 px-7 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-[0_0_20px_rgba(0,217,255,0.16)] backdrop-blur-sm transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-cyan-300 hover:text-black hover:shadow-[0_0_34px_rgba(0,217,255,0.32)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
             to="/contact"
           >
             Book Now
+            <ChevronRight
+              aria-hidden="true"
+              className="text-cyan-300 transition group-hover:translate-x-1 group-hover:text-black"
+              size={17}
+            />
           </Link>
         </div>
 
         <button
           aria-expanded={isOpen}
           aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
-          className="ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white transition duration-300 hover:border-cyan-300/50 hover:text-cyan-200 hover:shadow-[0_0_24px_rgba(0,217,255,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 lg:hidden"
+          className="ml-auto inline-flex h-11 w-11 items-center justify-center border border-cyan-300/35 bg-black/30 text-white backdrop-blur-sm transition duration-300 hover:border-cyan-300/70 hover:text-cyan-200 hover:shadow-[0_0_24px_rgba(0,217,255,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 lg:hidden"
           onClick={() => setIsOpen((current) => !current)}
           type="button"
         >
@@ -77,7 +82,7 @@ function Navbar() {
       {isOpen ? (
         <nav
           aria-label="Mobile navigation"
-          className="mx-auto mt-3 flex max-w-7xl flex-col gap-1 rounded-3xl border border-white/10 bg-[#050505]/88 p-4 shadow-[0_18px_70px_rgba(0,0,0,0.4)] backdrop-blur-xl lg:hidden"
+          className="mx-auto mt-4 flex max-w-[92rem] flex-col gap-1 border border-white/10 bg-[#050505]/90 p-4 shadow-[0_18px_70px_rgba(0,0,0,0.4)] backdrop-blur-xl lg:hidden"
         >
           {navLinks.map((link) => (
             <NavLink
@@ -97,11 +102,12 @@ function Navbar() {
             </NavLink>
           ))}
           <Link
-            className="mt-2 inline-flex items-center justify-center rounded-full border border-cyan-300/70 bg-cyan-300 px-5 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-black shadow-[0_0_26px_rgba(0,217,255,0.24)] transition duration-300 hover:bg-white"
+            className="mt-2 inline-flex items-center justify-center gap-2 border border-cyan-300/70 bg-black/30 px-5 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-[0_0_20px_rgba(0,217,255,0.18)] transition duration-300 hover:bg-cyan-300 hover:text-black"
             onClick={closeMenu}
             to="/contact"
           >
             Book Now
+            <ChevronRight aria-hidden="true" size={16} />
           </Link>
         </nav>
       ) : null}
