@@ -1,15 +1,11 @@
 import { motion } from 'framer-motion'
 import {
   CheckCircle,
-  Clock,
-  Droplet,
   Gem,
   Heart,
+  Home,
   ShieldCheck,
   Sparkles,
-  Star,
-  ThumbsUp,
-  Truck,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
@@ -20,69 +16,108 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 }
 
-const values = [
+const storySections = [
   {
-    title: 'Premium Care',
-    text: 'Only the best for your vehicle.',
-    Icon: Gem,
+    title: 'Founded With A Purpose',
+    points: ['Founded in 2018', 'Mission to raise the standard of vehicle care', 'Meaning of Visual Vehicle Standards'],
+    paragraphs: [
+      'VVS Haus was founded in 2018 with a simple mission: to raise the standard of vehicle care.',
+      'VVS stands for Visual Vehicle Standards, a name that reflects what we believe every vehicle deserves: professional attention, exceptional care, and a finish that owners can be proud of.',
+    ],
   },
   {
-    title: 'Precision Focused',
-    text: 'Every detail matters.',
-    Icon: Sparkles,
+    title: 'Mobile By Design',
+    points: ['Built around convenience, quality, and consistency', 'Service delivered directly to the customer', 'Designed for busy vehicle owners'],
+    paragraphs: [
+      'What started as a passion for clean, well-maintained vehicles quickly grew into a mobile detailing business built on convenience, quality, and consistency. We recognised that people lead busy lives and often do not have the time to sit at a shop for hours waiting on their vehicle, so we brought the service directly to them.',
+    ],
   },
   {
-    title: 'Trusted Service',
-    text: 'Reliable, professional and careful.',
-    Icon: ShieldCheck,
+    title: 'Every Vehicle Matters',
+    points: ['Family SUVs', 'Daily commuters', 'Work vehicles', 'Weekend cars', 'Luxury vehicles'],
+    paragraphs: [
+      'At VVS Haus, we believe every vehicle matters. Whether it is a family SUV, a daily commuter, a work truck, a weekend cruiser, or a luxury vehicle, we approach every detail with the same level of care and attention.',
+    ],
   },
   {
-    title: 'Passion Driven',
-    text: 'We treat every car like our own.',
-    Icon: Star,
+    title: 'More Than A Name',
+    points: ['A home for vehicle care', 'High standards', 'Professionalism', 'Customer satisfaction'],
+    paragraphs: [
+      'The name “Haus” represents more than a business. It represents a home for vehicle care, where high standards, professionalism, and customer satisfaction come first.',
+    ],
+  },
+  {
+    title: 'Setting The Standard',
+    points: ['Restore pride in ownership', 'Protect customer investment', 'Dedication, reliability, and results'],
+    paragraphs: [
+      'Our goal has never been simply to wash vehicles. We strive to restore pride in ownership, protect our clients’ investments, and help every vehicle look its absolute best.',
+      'Since 2018, our reputation has been built one vehicle at a time through dedication, reliability, and results that speak for themselves.',
+      'We take pride in treating every vehicle as if it were our own and every customer as part of the VVS Haus family.',
+      'Today, VVS Haus continues to serve drivers who value quality, convenience, and attention to detail.',
+    ],
   },
 ]
 
-const reasons = [
+const values = [
   {
-    title: 'Attention To Every Detail',
-    description: 'No shortcuts. Just perfection.',
-    icon: Clock,
+    title: 'Professional Attention',
+    description: 'Every vehicle receives careful, considered service.',
+    icon: Sparkles,
   },
   {
-    title: 'Premium Products',
-    description: 'Industry-leading products only.',
-    icon: Droplet,
-  },
-  {
-    title: 'We Come To You',
-    description: 'Convenience without compromise.',
-    icon: Truck,
-  },
-  {
-    title: 'Fully Insured & Trusted',
-    description: 'Your vehicle is in safe hands.',
-    icon: ShieldCheck,
-  },
-  {
-    title: 'Built On Passion',
-    description: 'We love what we do, and it shows.',
+    title: 'Exceptional Care',
+    description: 'We treat every vehicle as if it were our own.',
     icon: Heart,
   },
   {
-    title: 'Satisfaction Guaranteed',
-    description: 'If you’re not happy, we’ll make it right.',
-    icon: ThumbsUp,
+    title: 'Convenience',
+    description: 'Premium detailing delivered directly to you.',
+    icon: Home,
+  },
+  {
+    title: 'Consistency',
+    description: 'High standards on every vehicle, every time.',
+    icon: CheckCircle,
+  },
+  {
+    title: 'Reliability',
+    description: 'A professional service customers can trust.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Pride In Ownership',
+    description: 'Helping every vehicle look its absolute best.',
+    icon: Gem,
   },
 ]
 
-const equipment = [
-  'Premium polishing system',
-  'Premium microfibre towels',
-  'pH neutral safe products',
-  'Deionised water system',
-  'Steam cleaning technology',
-]
+function StoryBlock({ index, paragraphs, points, title }) {
+  return (
+    <article className="border border-white/10 bg-black/20 p-5 shadow-[0_16px_60px_rgba(0,0,0,0.22)]">
+      <div className="mb-4 flex items-center gap-3">
+        <span className="font-['Orbitron'] text-sm font-semibold tracking-[0.18em] text-cyan-300">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+        <h3 className="font-['Orbitron'] text-sm font-semibold uppercase tracking-[0.12em] text-white">
+          {title}
+        </h3>
+      </div>
+      <div className="space-y-4 text-sm leading-7 text-white/70 sm:text-base">
+        {paragraphs.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
+      </div>
+      <ul className="mt-5 grid gap-2 text-sm text-white/58 sm:grid-cols-2">
+        {points.map((point) => (
+          <li className="flex gap-3" key={point}>
+            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(0,217,255,0.65)]" />
+            <span>{point}</span>
+          </li>
+        ))}
+      </ul>
+    </article>
+  )
+}
 
 function About() {
   return (
@@ -118,20 +153,24 @@ function About() {
               <br />
               Driven By <span className="text-cyan-300">Passion.</span>
             </motion.h1>
+            <motion.div className="mt-6 border-l-2 border-cyan-300/80 pl-5" variants={fadeUp}>
+              <p className="font-['Orbitron'] text-sm font-semibold uppercase tracking-[0.18em] text-white">
+                VVS Haus
+              </p>
+              <p className="mt-2 text-sm uppercase tracking-[0.22em] text-cyan-300">
+                Visual Vehicle Standards
+              </p>
+              <p className="mt-2 text-sm text-white/68">
+                Professional Mobile Detailing | Established 2018
+              </p>
+            </motion.div>
             <motion.p
               className="mt-6 max-w-lg text-base leading-8 text-white/78"
               variants={fadeUp}
             >
-              VVS Haus is a Professional Mobile Detailing brand built on Visual Vehicle
-              Standards: careful technique, high standards, and a relentless attention
-              to detail.
+              VVS Haus was founded in 2018 with a simple mission: to raise the
+              standard of vehicle care.
             </motion.p>
-            <motion.div className="mt-7" variants={fadeUp}>
-              <p className="font-['Orbitron'] text-xs font-semibold uppercase tracking-[0.22em] text-white">
-                VVS Haus Founder
-              </p>
-              <span className="mt-3 block h-px w-28 bg-cyan-300/70 shadow-[0_0_18px_rgba(0,217,255,0.5)]" />
-            </motion.div>
           </motion.div>
 
           <motion.div
@@ -167,7 +206,7 @@ function About() {
           whileInView={{ opacity: 1, x: 0 }}
         >
           <img
-            alt="VVS Haus founder wearing branded detailing hoodie"
+            alt="VVS Haus branded detailing apparel"
             className="h-full min-h-[24rem] w-full object-cover object-center brightness-[0.8] contrast-[1.08]"
             src="/assets/images/hoodie-logo.jpg"
           />
@@ -177,8 +216,8 @@ function About() {
         <motion.div
           className="flex flex-col justify-center px-6 py-10 sm:px-8 lg:px-12"
           initial="hidden"
-          transition={{ staggerChildren: 0.1 }}
-          viewport={{ once: true, amount: 0.3 }}
+          transition={{ staggerChildren: 0.08 }}
+          viewport={{ once: true, amount: 0.2 }}
           whileInView="visible"
         >
           <motion.p
@@ -191,37 +230,11 @@ function About() {
             className="max-w-3xl font-['Orbitron'] text-2xl font-semibold uppercase leading-tight tracking-[0.06em] text-white sm:text-3xl lg:text-4xl"
             variants={fadeUp}
           >
-            Precision Isn’t Just What We Do. It’s{' '}
-            <span className="text-cyan-300">Who We Are.</span>
+            A Home For <span className="text-cyan-300">Visual Vehicle Standards.</span>
           </motion.h2>
-          <motion.div
-            className="mt-5 max-w-3xl space-y-4 text-sm leading-7 text-white/70 sm:text-base"
-            variants={fadeUp}
-          >
-            <p>
-              VVS Haus was established in 2018 to bring a premium detailing experience
-              directly to your location. Every service is built around careful
-              preparation, quality products, and a finish that feels sharp, clean and
-              refined.
-            </p>
-            <p>We do not rush. We do not compromise. We perfect.</p>
-          </motion.div>
-
-          <motion.div
-            className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-4"
-            variants={fadeUp}
-          >
-            {values.map(({ Icon, text, title }) => (
-              <div
-                className="border-r border-white/10 pr-5 last:border-r-0"
-                key={title}
-              >
-                <Icon aria-hidden="true" className="mb-4 text-cyan-300" size={34} strokeWidth={1.45} />
-                <h3 className="font-['Orbitron'] text-xs font-semibold uppercase tracking-[0.12em] text-white">
-                  {title}
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-white/62">{text}</p>
-              </div>
+          <motion.div className="mt-7 grid gap-5" variants={fadeUp}>
+            {storySections.map((section, index) => (
+              <StoryBlock index={index} key={section.title} {...section} />
             ))}
           </motion.div>
         </motion.div>
@@ -235,10 +248,10 @@ function About() {
         <div className="relative mx-auto max-w-[92rem]">
           <div className="text-center">
             <p className="text-xs font-bold uppercase tracking-[0.32em] text-cyan-300">
-              Why Choose Us
+              Values
             </p>
             <h2 className="mt-4 font-['Orbitron'] text-3xl font-semibold uppercase tracking-[0.08em] text-white sm:text-4xl">
-              Detailing. <span className="text-cyan-300">Perfected.</span>
+              Setting The <span className="text-cyan-300">Standard.</span>
             </h2>
           </div>
 
@@ -249,10 +262,10 @@ function About() {
             viewport={{ once: true, amount: 0.18 }}
             whileInView="visible"
           >
-            {reasons.map((reason) => (
-              <motion.div key={reason.title} variants={fadeUp}>
+            {values.map((value) => (
+              <motion.div key={value.title} variants={fadeUp}>
                 <FeatureCard
-                  {...reason}
+                  {...value}
                   className="min-h-full rounded-none p-5 text-center [&>div]:mx-auto [&>div]:mb-5 [&>h3]:text-sm [&>p]:text-sm"
                 />
               </motion.div>
@@ -276,19 +289,12 @@ function About() {
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.94)_0%,rgba(5,5,5,0.76)_55%,rgba(5,5,5,0.46)_100%)]" />
           <div className="relative max-w-xl">
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.32em] text-cyan-300">
-              Founder
+              Our Standard
             </p>
-            <h2 className="font-['Orbitron'] text-3xl font-semibold uppercase leading-tight tracking-[0.07em] text-white">
-              Quality Is In The <span className="text-cyan-300">Details.</span>
-            </h2>
-            <p className="mt-5 text-sm leading-7 text-white/72 sm:text-base">
-              With hands-on experience and a passion for perfection, VVS Haus was built
-              to bring Visual Vehicle Standards to your doorstep. Thank you for trusting
-              us with your vehicle.
-            </p>
-            <p className="mt-8 font-['Orbitron'] text-xs font-semibold uppercase tracking-[0.24em] text-white">
-              VVS Haus Founder
-            </p>
+            <blockquote className="font-['Orbitron'] text-2xl font-semibold uppercase leading-tight tracking-[0.07em] text-white sm:text-3xl">
+              “Maintaining high visual standards should never be a luxury. It should be{' '}
+              <span className="text-cyan-300">the standard.</span>”
+            </blockquote>
           </div>
         </motion.div>
 
@@ -306,20 +312,15 @@ function About() {
           <div className="absolute inset-0 bg-[linear-gradient(90deg,#050505_0%,rgba(5,5,5,0.86)_48%,rgba(5,5,5,0.58)_100%)]" />
           <div className="relative max-w-xl">
             <p className="mb-5 text-xs font-bold uppercase tracking-[0.26em] text-cyan-300">
-              Professional Equipment. Superior Results.
+              Closing Statement
             </p>
-            <p className="max-w-md text-sm leading-7 text-white/74 sm:text-base">
-              We use industry-leading equipment and techniques to deliver a flawless
-              finish every time.
-            </p>
-            <ul className="mt-6 space-y-3">
-              {equipment.map((item) => (
-                <li className="flex items-center gap-3 text-sm text-white/74" key={item}>
-                  <CheckCircle aria-hidden="true" className="shrink-0 text-cyan-300" size={18} strokeWidth={1.7} />
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <h2 className="font-['Orbitron'] text-3xl font-semibold uppercase leading-tight tracking-[0.08em] text-white">
+              VVS Haus
+            </h2>
+            <div className="mt-5 space-y-3 text-sm leading-7 text-white/74 sm:text-base">
+              <p>Visual Vehicle Standards</p>
+              <p>Setting the Standard Since 2018.</p>
+            </div>
           </div>
         </motion.div>
       </section>
@@ -345,8 +346,8 @@ function About() {
             <h2 className="font-['Orbitron'] text-2xl font-semibold uppercase tracking-[0.1em] text-white sm:text-3xl">
               Experience The <span className="text-cyan-300">VVS Difference.</span>
             </h2>
-            <p className="mt-3 text-base text-white/72">
-              Professional Mobile Detailing. Setting the Standard Since 2018.
+            <p className="mt-3 max-w-3xl text-base text-white/72">
+              Professional mobile detailing built around quality, convenience, and attention to detail.
             </p>
           </motion.div>
 
@@ -356,7 +357,7 @@ function About() {
             whileInView={{ opacity: 1, x: 0 }}
           >
             <Link
-              className="group inline-flex min-w-72 items-center justify-center border border-cyan-300/70 bg-black/35 px-9 py-5 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_28px_rgba(0,217,255,0.16)] transition duration-300 hover:-translate-y-0.5 hover:border-cyan-200 hover:shadow-[0_0_38px_rgba(0,217,255,0.28)]"
+              className="group inline-flex min-w-72 items-center justify-center border border-cyan-300/70 bg-black/35 px-9 py-5 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_28px_rgba(0,217,255,0.16)] transition duration-300 hover:-translate-y-0.5 hover:border-cyan-200 hover:shadow-[0_0_38px_rgba(0,217,255,0.28)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
               to="/contact"
             >
               Book Your Detail
