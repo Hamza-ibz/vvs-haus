@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
+import ScrollToTop from './components/layout/ScrollToTop'
 import LoadingScreen from './components/sections/LoadingScreen'
 import Home from './pages/Home'
 import Services from './pages/Services'
@@ -12,6 +13,7 @@ import './App.css'
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <LoadingScreen />
       <Navbar />
       <main>

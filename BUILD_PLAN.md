@@ -7,6 +7,8 @@
 - [ ] Confirm Framer Motion, GSAP, Lucide React Icons, and react-router-dom are available.
 - [ ] Establish the planned folder structure under `src/`, including `src/pages/`.
 - [ ] Define global brand tokens for black, charcoal, white, and cyan.
+- [ ] Document approved brand wording: `VVS Haus`, `Visual Vehicle Standards`, `Professional Mobile Detailing`, `Established 2018`, and `Setting the Standard Since 2018`.
+- [ ] Confirm `/assets/logos/logo.png` is the single logo asset used in React components.
 - [ ] Confirm font loading strategy for Orbitron and Inter.
 - [ ] Run `npm run lint`.
 - [ ] Run `npm run build`.
@@ -61,9 +63,9 @@
 - [ ] Show a Mercedes vehicle on the right.
 - [ ] Show a large glowing VVS diamond/logo in the center.
 - [ ] Use main text: `PRECISION MOBILE DETAILING`.
-- [ ] Use subtitle: `Luxury care. German precision. Built different.`
+- [ ] Use approved brand support copy such as `Professional Mobile Detailing. Setting the Standard Since 2018.`
 - [ ] Add buttons: `Book Your Detail` and `View Services`.
-- [ ] Add bottom feature strip: `Mobile Service`, `Premium Products`, `German Precision`, `Satisfaction Guaranteed`.
+- [ ] Add bottom feature strip: `Mobile Service`, `Premium Products`, `Visual Standards`, `Satisfaction Guaranteed`.
 - [ ] Keep service cards, gallery content, about content, social content, and footer content out of the hero viewport.
 - [ ] Run `npm run lint`.
 - [ ] Run `npm run build`.

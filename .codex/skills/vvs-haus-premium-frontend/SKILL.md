@@ -9,7 +9,15 @@ Use this skill when working on VVS Haus page builds, reusable sections, UI revie
 
 ## Project Context
 
-VVS Haus is a premium mobile detailing brand. The website should feel luxury, cinematic, modern, high-end automotive, Mercedes-focused, professional, clean, and minimalist.
+VVS Haus is a Professional Mobile Detailing brand. VVS means Visual Vehicle Standards. The website should feel luxury, cinematic, modern, high-end automotive, Mercedes-focused, professional, clean, and minimalist.
+
+Approved brand wording:
+
+- `VVS Haus`
+- `Visual Vehicle Standards`
+- `Professional Mobile Detailing`
+- `Established 2018`
+- `Setting the Standard Since 2018`
 
 The final confirmed direction is a multi-page website, not a one-page scrolling landing page.
 
@@ -46,9 +54,9 @@ The Home page first screen should be hero-focused and match the confirmed visual
 - Mercedes vehicle on the right.
 - Large glowing VVS diamond/logo in the center.
 - Main text: `PRECISION MOBILE DETAILING`
-- Subtitle: `Luxury care. German precision. Built different.`
+- Subtitle/tagline direction: `Professional Mobile Detailing. Setting the Standard Since 2018.`
 - Buttons: `Book Your Detail` and `View Services`
-- Bottom feature strip: `Mobile Service`, `Premium Products`, `German Precision`, `Satisfaction Guaranteed`
+- Bottom feature strip: `Mobile Service`, `Premium Products`, `Visual Standards`, `Satisfaction Guaranteed`
 
 The Home hero viewport must not show service cards, gallery sections, about sections, social sections, or footer content.
 
@@ -76,6 +84,8 @@ Do not generate the whole website at once.
 - Use dark backgrounds with subtle cyan glow effects.
 - Use `Orbitron` for headings.
 - Use `Inter` for body text.
+- Use `/assets/logos/logo.png` as the single logo asset in React components.
+- Treat the active logo as diamond-only; do not recreate or reference older horizontal logo lockups.
 - Use Mercedes vehicles only.
 - Do not use BMW, Audi, Porsche, Lamborghini, or other car brands.
 - Keep layouts clean, spacious, confident, and premium.

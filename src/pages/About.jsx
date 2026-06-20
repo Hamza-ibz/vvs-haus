@@ -122,8 +122,9 @@ function About() {
               className="mt-6 max-w-lg text-base leading-8 text-white/78"
               variants={fadeUp}
             >
-              VVS Haus is a premium mobile detailing service built on high standards,
-              careful technique, and a relentless attention to detail.
+              VVS Haus is a Professional Mobile Detailing brand built on Visual Vehicle
+              Standards: careful technique, high standards, and a relentless attention
+              to detail.
             </motion.p>
             <motion.div className="mt-7" variants={fadeUp}>
               <p className="font-['Orbitron'] text-xs font-semibold uppercase tracking-[0.22em] text-white">
@@ -198,9 +199,10 @@ function About() {
             variants={fadeUp}
           >
             <p>
-              VVS Haus was created to bring a premium detailing experience directly
-              to your location. Every service is built around careful preparation,
-              quality products, and a finish that feels sharp, clean and refined.
+              VVS Haus was established in 2018 to bring a premium detailing experience
+              directly to your location. Every service is built around careful
+              preparation, quality products, and a finish that feels sharp, clean and
+              refined.
             </p>
             <p>We do not rush. We do not compromise. We perfect.</p>
           </motion.div>
@@ -281,8 +283,8 @@ function About() {
             </h2>
             <p className="mt-5 text-sm leading-7 text-white/72 sm:text-base">
               With hands-on experience and a passion for perfection, VVS Haus was built
-              to bring a new standard of vehicle care to your doorstep. Thank you for
-              trusting us with your vehicle.
+              to bring Visual Vehicle Standards to your doorstep. Thank you for trusting
+              us with your vehicle.
             </p>
             <p className="mt-8 font-['Orbitron'] text-xs font-semibold uppercase tracking-[0.24em] text-white">
               VVS Haus Founder
@@ -344,7 +346,7 @@ function About() {
               Experience The <span className="text-cyan-300">VVS Difference.</span>
             </h2>
             <p className="mt-3 text-base text-white/72">
-              Premium care. Precision finish. Built different.
+              Professional Mobile Detailing. Setting the Standard Since 2018.
             </p>
           </motion.div>
 

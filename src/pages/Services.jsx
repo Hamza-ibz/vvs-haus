@@ -18,8 +18,8 @@ const heroFeatures = [
     Icon: CalendarDays,
   },
   {
-    title: 'German Precision',
-    text: 'Perfection in detail',
+    title: 'Visual Standards',
+    text: 'Established 2018',
     Icon: ShieldCheck,
   },
   {
@@ -108,7 +108,7 @@ function Services() {
               className="mt-6 max-w-md text-base leading-8 text-white/78 sm:text-lg"
               variants={fadeUp}
             >
-              Professional mobile detailing services delivered to you. Wherever you are.
+              Professional Mobile Detailing delivered to you. Setting the Standard Since 2018.
             </motion.p>
 
             <motion.div

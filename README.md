@@ -1,6 +1,14 @@
 # VVS Haus
 
-VVS Haus is a premium multi-page React/Vite website for a luxury mobile detailing brand. The project is built to feel cinematic, modern, minimalist, and high-end, with a Mercedes-focused visual direction and a dark luxury design system.
+VVS Haus is a premium multi-page React/Vite website for a Professional Mobile Detailing brand. VVS means Visual Vehicle Standards. The project is built to feel cinematic, modern, minimalist, and high-end, with a Mercedes-focused visual direction and a dark luxury design system.
+
+Approved brand wording:
+
+- VVS Haus
+- Visual Vehicle Standards
+- Professional Mobile Detailing
+- Established 2018
+- Setting the Standard Since 2018
 
 The site is not a one-page scrolling website. It should use route-based pages for Home, Services, Gallery, About, and Contact / Booking.
 
@@ -37,6 +45,12 @@ Typography:
 
 - Headings: `Orbitron`
 - Body: `Inter`
+
+Logo direction:
+
+- Use `/assets/logos/logo.png` as the single logo asset in React components.
+- The active logo is diamond-only.
+- Do not recreate or reference older horizontal “diamond + VVS Haus text” logo lockups.
 
 ## Getting Started
 
@@ -102,9 +116,9 @@ The Home page first screen should be a focused cinematic hero:
 - Mercedes vehicle on the right.
 - Large glowing VVS diamond/logo in the center.
 - Main text: `PRECISION MOBILE DETAILING`
-- Subtitle: `Luxury care. German precision. Built different.`
+- Subtitle/tagline direction: `Professional Mobile Detailing. Setting the Standard Since 2018.`
 - Buttons: `Book Your Detail` and `View Services`
-- Bottom feature strip: `Mobile Service`, `Premium Products`, `German Precision`, `Satisfaction Guaranteed`
+- Bottom feature strip: `Mobile Service`, `Premium Products`, `Visual Standards`, `Satisfaction Guaranteed`
 
 The Home hero viewport should not show service cards, gallery sections, about sections, social sections, or footer content.
 

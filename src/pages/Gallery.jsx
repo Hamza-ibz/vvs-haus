@@ -18,8 +18,8 @@ const trustItems = [
     Icon: ImageIcon,
   },
   {
-    title: 'German Precision',
-    text: 'Perfection in every detail.',
+    title: 'Visual Standards',
+    text: 'Established 2018.',
     Icon: Gem,
   },
   {
@@ -112,7 +112,7 @@ function Gallery() {
               className="mt-6 max-w-md text-base leading-8 text-white/78 sm:text-lg"
               variants={fadeUp}
             >
-              Real transformations. Real results. Every detail, perfected.
+              Real transformations from VVS Haus. Setting the Standard Since 2018.
             </motion.p>
 
             <motion.div

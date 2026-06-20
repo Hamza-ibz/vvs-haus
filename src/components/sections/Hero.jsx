@@ -48,7 +48,7 @@ function Hero() {
             className="mb-5 text-xs font-semibold uppercase tracking-[0.34em] text-cyan-300 sm:text-sm"
             variants={item}
           >
-            VVS HAUS MOBILE DETAILING
+            Professional Mobile Detailing
           </motion.p>
           <motion.h1
             className="font-['Orbitron'] text-4xl font-semibold uppercase leading-[1.05] tracking-[0.06em] text-white sm:text-6xl lg:text-7xl"

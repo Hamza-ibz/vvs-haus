@@ -18,8 +18,8 @@ const featureStrip = [
   },
   {
     Icon: Wrench,
-    label: 'German Precision',
-    sublabel: 'Perfection in detail',
+    label: 'Visual Standards',
+    sublabel: 'Since 2018',
   },
   {
     Icon: ShieldCheck,
@@ -129,7 +129,7 @@ function Home() {
             className="mt-4 max-w-3xl text-xs uppercase leading-6 tracking-[0.22em] text-white/72 sm:text-sm"
             variants={item}
           >
-            Luxury care. German precision. Built different.
+            Professional Mobile Detailing. Setting the Standard Since 2018.
           </motion.p>
 
           <motion.div
