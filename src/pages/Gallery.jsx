@@ -1,15 +1,17 @@
 import { motion } from 'framer-motion'
 import {
-  ChevronLeft,
   ChevronRight,
   Gem,
   Image as ImageIcon,
   ShieldCheck,
 } from 'lucide-react'
+import { useCallback, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import GalleryCard from '../components/ui/GalleryCard'
-import gallery, { transformations } from '../data/gallery'
+import GalleryLightbox from '../components/ui/GalleryLightbox'
+import TransformationCard from '../components/ui/TransformationCard'
+import galleryItems, { galleryFilters, transformations } from '../data/gallery'
 
 const trustItems = [
   {
@@ -29,52 +31,102 @@ const trustItems = [
   },
 ]
 
-const filters = ['All', 'Exterior', 'Interior', 'Transformations', 'Our Setup']
-
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0 },
 }
 
-function SectionTitle({ children }) {
+function SectionHeading({ eyebrow, title, copy }) {
   return (
-    <div className="flex items-center justify-center gap-4">
-      <span className="h-px w-10 bg-cyan-300/55" />
-      <h2 className="relative font-['Orbitron'] text-sm font-semibold uppercase tracking-[0.42em] text-white">
-        {children}
-        <span className="absolute -bottom-2 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(0,217,255,0.9)]" />
+    <div className="mx-auto max-w-3xl text-center">
+      <div className="flex items-center justify-center gap-4">
+        <span className="h-px w-10 bg-cyan-300/55" />
+        <p className="relative text-xs font-bold uppercase tracking-[0.32em] text-cyan-300">
+          {eyebrow}
+          <span className="absolute -bottom-2 left-1/2 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(0,217,255,0.9)]" />
+        </p>
+        <span className="h-px w-10 bg-cyan-300/55" />
+      </div>
+      <h2 className="mt-6 font-['Orbitron'] text-2xl font-semibold uppercase tracking-[0.1em] text-white sm:text-3xl">
+        {title}
       </h2>
-      <span className="h-px w-10 bg-cyan-300/55" />
+      {copy ? (
+        <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-white/64 sm:text-base">
+          {copy}
+        </p>
+      ) : null}
     </div>
   )
 }
 
-function TransformationPanel({ after, before, title }) {
+function EmptyState() {
   return (
-    <article className="group relative aspect-[1.7] overflow-hidden border border-white/12 bg-[#111111] shadow-[0_18px_60px_rgba(0,0,0,0.34)] transition duration-300 hover:border-cyan-300/45">
-      <img
-        alt={`${title} before`}
-        className="absolute inset-0 h-full w-1/2 object-cover brightness-[0.62] contrast-[1.1] grayscale"
-        src={before}
-      />
-      <img
-        alt={`${title} after`}
-        className="absolute inset-y-0 right-0 h-full w-1/2 object-cover brightness-[0.92] contrast-[1.08]"
-        src={after}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/25" />
-      <div className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-white/70 shadow-[0_0_18px_rgba(255,255,255,0.35)]" />
-      <span className="absolute bottom-4 left-7 text-[0.66rem] font-bold uppercase tracking-[0.18em] text-white">
-        Before
-      </span>
-      <span className="absolute bottom-4 right-7 text-[0.66rem] font-bold uppercase tracking-[0.18em] text-white">
-        After
-      </span>
-    </article>
+    <div className="border border-white/10 bg-[#0a0a0a]/90 px-6 py-12 text-center shadow-[0_0_44px_rgba(0,217,255,0.08)]">
+      <p className="font-['Orbitron'] text-sm font-semibold uppercase tracking-[0.18em] text-white">
+        More VVS Haus results are coming soon.
+      </p>
+    </div>
   )
 }
 
 function Gallery() {
+  const [activeFilter, setActiveFilter] = useState('all')
+  const [lightboxItems, setLightboxItems] = useState([])
+  const [selectedItem, setSelectedItem] = useState(null)
+
+  const filteredItems = useMemo(() => (
+    activeFilter === 'all'
+      ? galleryItems
+      : galleryItems.filter((item) => item.category === activeFilter)
+  ), [activeFilter])
+
+  const transformationLightboxItems = useMemo(() => (
+    transformations.flatMap((item) => [
+      {
+        id: `${item.id}-before`,
+        title: `${item.title} Before`,
+        image: item.beforeImage,
+        alt: item.beforeAlt,
+        description: item.description,
+      },
+      {
+        id: `${item.id}-after`,
+        title: `${item.title} After`,
+        image: item.afterImage,
+        alt: item.afterAlt,
+        description: item.description,
+      },
+    ])
+  ), [])
+
+  const openLightbox = useCallback((item, items = filteredItems) => {
+    setLightboxItems(items)
+    setSelectedItem(item)
+  }, [filteredItems])
+
+  const closeLightbox = useCallback(() => {
+    setSelectedItem(null)
+    setLightboxItems([])
+  }, [])
+
+  const showNextImage = useCallback(() => {
+    setSelectedItem((current) => {
+      if (!current || lightboxItems.length === 0) return current
+      const currentIndex = lightboxItems.findIndex((item) => item.id === current.id)
+      const nextIndex = (currentIndex + 1) % lightboxItems.length
+      return lightboxItems[nextIndex]
+    })
+  }, [lightboxItems])
+
+  const showPreviousImage = useCallback(() => {
+    setSelectedItem((current) => {
+      if (!current || lightboxItems.length === 0) return current
+      const currentIndex = lightboxItems.findIndex((item) => item.id === current.id)
+      const previousIndex = (currentIndex - 1 + lightboxItems.length) % lightboxItems.length
+      return lightboxItems[previousIndex]
+    })
+  }, [lightboxItems])
+
   return (
     <div className="min-h-screen bg-[#050505] text-white">
       <section className="relative overflow-hidden border-b border-white/10 bg-[#050505] pt-32 sm:pt-36 lg:pt-28">
@@ -104,15 +156,21 @@ function Gallery() {
               className="font-['Orbitron'] text-4xl font-semibold uppercase leading-[1.16] tracking-[0.05em] text-white sm:text-5xl lg:text-[3.4rem]"
               variants={fadeUp}
             >
-              Built Different.
+              Results That Speak
               <br />
-              Results That <span className="text-cyan-300">Speak.</span>
+              For <span className="text-cyan-300">Themselves.</span>
             </motion.h1>
             <motion.p
               className="mt-6 max-w-md text-base leading-8 text-white/78 sm:text-lg"
               variants={fadeUp}
             >
-              Real transformations from VVS Haus. Setting the Standard Since 2018.
+              Explore real transformations, interior and exterior detailing results, and the professional mobile setup behind VVS Haus.
+            </motion.p>
+            <motion.p
+              className="mt-4 text-xs font-bold uppercase tracking-[0.24em] text-cyan-300/80"
+              variants={fadeUp}
+            >
+              Visual Vehicle Standards
             </motion.p>
 
             <motion.div
@@ -158,23 +216,20 @@ function Gallery() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden border-b border-white/10 bg-[#050505] px-6 py-8 sm:px-8 lg:px-16 2xl:px-20">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(0,217,255,0.1),transparent_24rem),linear-gradient(135deg,#050505_0%,#070707_44%,#111111_68%,#050505_100%)]"
-        />
-        <div className="relative mx-auto max-w-[92rem]">
-          <SectionTitle>Transformations</SectionTitle>
-          <div className="relative mt-8">
-            <button
-              aria-label="Previous transformation"
-              className="absolute -left-4 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-300/65 text-cyan-200 shadow-[0_0_24px_rgba(0,217,255,0.14)] xl:inline-flex"
-              type="button"
-            >
-              <ChevronLeft aria-hidden="true" size={18} />
-            </button>
+      {transformations.length ? (
+        <section className="relative overflow-hidden border-b border-white/10 bg-[#050505] px-6 py-12 sm:px-8 lg:px-16 2xl:px-20">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(0,217,255,0.1),transparent_24rem),linear-gradient(135deg,#050505_0%,#070707_44%,#111111_68%,#050505_100%)]"
+          />
+          <div className="relative mx-auto max-w-[92rem]">
+            <SectionHeading
+              copy="Every result reflects our commitment to quality, consistency, and attention to detail."
+              eyebrow="Transformations"
+              title="See The VVS Difference."
+            />
             <motion.div
-              className="grid gap-4 md:grid-cols-2 xl:grid-cols-4"
+              className="mt-9 grid gap-5 lg:grid-cols-2"
               initial="hidden"
               transition={{ staggerChildren: 0.08 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -182,58 +237,75 @@ function Gallery() {
             >
               {transformations.map((item) => (
                 <motion.div key={item.id} variants={fadeUp}>
-                  <TransformationPanel {...item} />
+                  <TransformationCard
+                    item={item}
+                    onOpen={(lightboxItem) => openLightbox(lightboxItem, transformationLightboxItems)}
+                  />
                 </motion.div>
               ))}
             </motion.div>
-            <button
-              aria-label="Next transformation"
-              className="absolute -right-4 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-cyan-300/65 text-cyan-200 shadow-[0_0_24px_rgba(0,217,255,0.14)] xl:inline-flex"
-              type="button"
-            >
-              <ChevronRight aria-hidden="true" size={18} />
-            </button>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
-      <section className="relative overflow-hidden bg-[#050505] px-6 py-8 sm:px-8 lg:px-16 2xl:px-20">
+      <section className="relative overflow-hidden bg-[#050505] px-6 py-12 sm:px-8 lg:px-16 2xl:px-20">
         <div
           aria-hidden="true"
           className="absolute inset-0 bg-[radial-gradient(circle_at_80%_8%,rgba(0,217,255,0.1),transparent_26rem),linear-gradient(225deg,#050505_0%,#070707_42%,#111111_66%,#050505_100%)]"
         />
         <div className="relative mx-auto max-w-[92rem]">
-          <SectionTitle>Gallery</SectionTitle>
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-            {filters.map((filter, index) => (
-              <button
-                className={[
-                  'min-w-28 border px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] transition duration-300',
-                  index === 0
-                    ? 'border-cyan-300/70 bg-cyan-300/8 text-cyan-200 shadow-[0_0_22px_rgba(0,217,255,0.14)]'
-                    : 'border-white/10 bg-black/20 text-white/70 hover:border-cyan-300/45 hover:text-cyan-200',
-                ].join(' ')}
-                key={filter}
-                type="button"
-              >
-                {filter}
-              </button>
-            ))}
+          <SectionHeading
+            copy="Browse VVS Haus results by transformation work, interior cleaning, exterior cleaning, and the professional setup behind each appointment."
+            eyebrow="Gallery"
+            title="Clean Work. Clear Standards."
+          />
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            {galleryFilters.map((filter) => {
+              const isActive = activeFilter === filter.id
+
+              return (
+                <button
+                  aria-pressed={isActive}
+                  className={[
+                    'min-w-28 border px-5 py-3 text-xs font-bold uppercase tracking-[0.15em] transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300',
+                    isActive
+                      ? 'border-cyan-300/70 bg-cyan-300/10 text-cyan-100 shadow-[0_0_22px_rgba(0,217,255,0.16)]'
+                      : 'border-white/10 bg-black/20 text-white/70 hover:border-cyan-300/45 hover:text-cyan-200',
+                  ].join(' ')}
+                  key={filter.id}
+                  onClick={() => setActiveFilter(filter.id)}
+                  type="button"
+                >
+                  {filter.label}
+                </button>
+              )
+            })}
           </div>
 
-          <motion.div
-            className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-5"
-            initial="hidden"
-            transition={{ staggerChildren: 0.05 }}
-            viewport={{ once: true, amount: 0.12 }}
-            whileInView="visible"
-          >
-            {gallery.map((item) => (
-              <motion.div key={item.id} variants={fadeUp}>
-                <GalleryCard {...item} />
-              </motion.div>
-            ))}
-          </motion.div>
+          {filteredItems.length ? (
+            <motion.div
+              className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5"
+              initial="hidden"
+              key={activeFilter}
+              transition={{ staggerChildren: 0.05 }}
+              viewport={{ once: true, amount: 0.12 }}
+              whileInView="visible"
+            >
+              {filteredItems.map((item) => (
+                <motion.div key={item.id} variants={fadeUp}>
+                  <GalleryCard
+                    {...item}
+                    onClick={() => openLightbox(item, filteredItems)}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          ) : (
+            <div className="mt-8">
+              <EmptyState />
+            </div>
+          )}
         </div>
       </section>
 
@@ -256,10 +328,13 @@ function Gallery() {
             whileInView={{ opacity: 1, x: 0 }}
           >
             <h2 className="font-['Orbitron'] text-2xl font-semibold uppercase tracking-[0.1em] text-white sm:text-3xl">
-              Your Car Deserves The <span className="text-cyan-300">VVS Finish.</span>
+              Your Vehicle Deserves The <span className="text-cyan-300">VVS Finish.</span>
             </h2>
             <p className="mt-3 text-base text-white/72">
-              Book your detail today and see the difference.
+              Professional mobile detailing built around quality, convenience, and attention to detail.
+            </p>
+            <p className="mt-2 text-xs font-bold uppercase tracking-[0.22em] text-cyan-300/85">
+              Setting the Standard Since 2018.
             </p>
           </motion.div>
 
@@ -269,7 +344,7 @@ function Gallery() {
             whileInView={{ opacity: 1, x: 0 }}
           >
             <Link
-              className="group inline-flex min-w-72 items-center justify-center gap-3 border border-cyan-300/70 bg-black/35 px-9 py-5 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_28px_rgba(0,217,255,0.16)] transition duration-300 hover:-translate-y-0.5 hover:border-cyan-200 hover:shadow-[0_0_38px_rgba(0,217,255,0.28)]"
+              className="group inline-flex min-w-72 items-center justify-center gap-3 border border-cyan-300/70 bg-black/35 px-9 py-5 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_28px_rgba(0,217,255,0.16)] transition duration-300 hover:-translate-y-0.5 hover:border-cyan-200 hover:shadow-[0_0_38px_rgba(0,217,255,0.28)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
               to="/contact"
             >
               Book Your Detail
@@ -278,6 +353,14 @@ function Gallery() {
           </motion.div>
         </div>
       </section>
+
+      <GalleryLightbox
+        item={selectedItem}
+        items={lightboxItems}
+        onClose={closeLightbox}
+        onNext={showNextImage}
+        onPrevious={showPreviousImage}
+      />
     </div>
   )
 }
