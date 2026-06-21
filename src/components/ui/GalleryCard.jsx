@@ -1,4 +1,7 @@
+import { motion } from 'framer-motion'
 import { Maximize2 } from 'lucide-react'
+
+import useReducedMotionPreference from '../../hooks/useReducedMotionPreference'
 
 function GalleryCard({
   image,
@@ -8,8 +11,10 @@ function GalleryCard({
   onClick,
   className = '',
 }) {
+  const prefersReducedMotion = useReducedMotionPreference()
+
   return (
-    <button
+    <motion.button
       aria-label={`View ${title || 'gallery'} image`}
       className={[
         'group relative aspect-[2.08] w-full overflow-hidden border border-white/10 bg-[#111111] text-left shadow-[0_18px_70px_rgba(0,0,0,0.35)] transition duration-300 hover:border-cyan-300/45 hover:shadow-[0_0_34px_rgba(0,217,255,0.14)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300',
@@ -17,6 +22,8 @@ function GalleryCard({
       ].join(' ')}
       onClick={onClick}
       type="button"
+      whileHover={prefersReducedMotion ? undefined : { y: -5, scale: 1.01 }}
+      whileTap={prefersReducedMotion ? undefined : { scale: 0.985 }}
     >
       {image ? (
         <img
@@ -44,7 +51,7 @@ function GalleryCard({
           ) : null}
         </div>
       ) : null}
-    </button>
+    </motion.button>
   )
 }
 

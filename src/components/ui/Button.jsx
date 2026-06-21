@@ -1,3 +1,7 @@
+import { motion } from 'framer-motion'
+
+import useReducedMotionPreference from '../../hooks/useReducedMotionPreference'
+
 const variants = {
   primary:
     'border-cyan-300/70 bg-cyan-300 text-black shadow-[0_0_28px_rgba(0,217,255,0.22)] hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_0_40px_rgba(0,217,255,0.35)]',
@@ -13,9 +17,10 @@ function Button({
   ...props
 }) {
   const variantClass = variants[variant] ?? variants.primary
+  const prefersReducedMotion = useReducedMotionPreference()
 
   return (
-    <button
+    <motion.button
       className={[
         'inline-flex items-center justify-center rounded-full border px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em]',
         'transition duration-300 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300',
@@ -23,10 +28,12 @@ function Button({
         className,
       ].join(' ')}
       type={type}
+      whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
+      whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
       {...props}
     >
       {children}
-    </button>
+    </motion.button>
   )
 }
 

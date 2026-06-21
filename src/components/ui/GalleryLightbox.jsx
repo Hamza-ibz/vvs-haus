@@ -2,6 +2,9 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { useEffect } from 'react'
 
+import useReducedMotionPreference from '../../hooks/useReducedMotionPreference'
+import { modalReveal, reducedMotionVariants } from '../../utils/animations'
+
 function GalleryLightbox({
   item,
   items,
@@ -9,6 +12,8 @@ function GalleryLightbox({
   onNext,
   onPrevious,
 }) {
+  const prefersReducedMotion = useReducedMotionPreference()
+
   useEffect(() => {
     if (!item) return undefined
 
@@ -42,13 +47,13 @@ function GalleryLightbox({
           <motion.div
             aria-labelledby="gallery-lightbox-title"
             aria-modal="true"
-            animate={{ opacity: 1, scale: 1, y: 0 }}
+            animate="visible"
             className="relative flex max-h-[92vh] w-full max-w-6xl flex-col border border-white/12 bg-[#050505] shadow-[0_0_70px_rgba(0,217,255,0.14)]"
-            exit={{ opacity: 0, scale: 0.98, y: 12 }}
-            initial={{ opacity: 0, scale: 0.98, y: 12 }}
+            exit="exit"
+            initial="hidden"
             onClick={(event) => event.stopPropagation()}
             role="dialog"
-            transition={{ duration: 0.22, ease: 'easeOut' }}
+            variants={prefersReducedMotion ? reducedMotionVariants : modalReveal}
           >
             <div className="flex items-center justify-between gap-4 border-b border-white/10 px-4 py-3 sm:px-5">
               <div>
@@ -73,30 +78,38 @@ function GalleryLightbox({
             </div>
 
             <div className="relative flex min-h-0 flex-1 items-center justify-center bg-black">
-              <img
+              <motion.img
+                animate={{ opacity: 1 }}
                 alt={item.alt}
                 className="max-h-[72vh] w-full object-contain"
+                initial={{ opacity: prefersReducedMotion ? 1 : 0 }}
+                key={item.id}
                 src={item.image}
+                transition={{ duration: prefersReducedMotion ? 0 : 0.18 }}
               />
 
               {items.length > 1 ? (
                 <>
-                  <button
+                  <motion.button
                     aria-label="Previous gallery image"
                     className="absolute left-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-cyan-300/50 bg-black/62 text-cyan-200 shadow-[0_0_24px_rgba(0,217,255,0.18)] backdrop-blur-xl transition hover:border-cyan-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 sm:left-5"
                     onClick={onPrevious}
                     type="button"
+                    whileHover={prefersReducedMotion ? undefined : { x: -3, scale: 1.04 }}
+                    whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
                   >
                     <ChevronLeft aria-hidden="true" size={22} />
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
                     aria-label="Next gallery image"
                     className="absolute right-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-cyan-300/50 bg-black/62 text-cyan-200 shadow-[0_0_24px_rgba(0,217,255,0.18)] backdrop-blur-xl transition hover:border-cyan-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 sm:right-5"
                     onClick={onNext}
                     type="button"
+                    whileHover={prefersReducedMotion ? undefined : { x: 3, scale: 1.04 }}
+                    whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
                   >
                     <ChevronRight aria-hidden="true" size={22} />
-                  </button>
+                  </motion.button>
                 </>
               ) : null}
             </div>

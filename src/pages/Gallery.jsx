@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import {
   ChevronRight,
   Gem,
@@ -265,7 +265,7 @@ function Gallery() {
               const isActive = activeFilter === filter.id
 
               return (
-                <button
+                <motion.button
                   aria-pressed={isActive}
                   className={[
                     'min-w-28 border px-5 py-3 text-xs font-bold uppercase tracking-[0.15em] transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300',
@@ -274,38 +274,54 @@ function Gallery() {
                       : 'border-white/10 bg-black/20 text-white/70 hover:border-cyan-300/45 hover:text-cyan-200',
                   ].join(' ')}
                   key={filter.id}
+                  layout
                   onClick={() => setActiveFilter(filter.id)}
                   type="button"
+                  whileTap={{ scale: 0.97 }}
                 >
                   {filter.label}
-                </button>
+                </motion.button>
               )
             })}
           </div>
 
-          {filteredItems.length ? (
-            <motion.div
-              className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5"
-              initial="hidden"
-              key={activeFilter}
-              transition={{ staggerChildren: 0.05 }}
-              viewport={{ once: true, amount: 0.12 }}
-              whileInView="visible"
-            >
-              {filteredItems.map((item) => (
-                <motion.div key={item.id} variants={fadeUp}>
-                  <GalleryCard
-                    {...item}
-                    onClick={() => openLightbox(item, filteredItems)}
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
-          ) : (
-            <div className="mt-8">
-              <EmptyState />
-            </div>
-          )}
+          <AnimatePresence mode="popLayout">
+            {filteredItems.length ? (
+              <motion.div
+                className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5"
+                initial="hidden"
+                key={activeFilter}
+                layout
+                transition={{ staggerChildren: 0.05 }}
+                viewport={{ once: true, amount: 0.12 }}
+                whileInView="visible"
+              >
+                {filteredItems.map((item) => (
+                  <motion.div
+                    exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.18 } }}
+                    key={item.id}
+                    layout
+                    variants={fadeUp}
+                  >
+                    <GalleryCard
+                      {...item}
+                      onClick={() => openLightbox(item, filteredItems)}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                className="mt-8"
+                exit={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: 12 }}
+                key="empty-gallery"
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <EmptyState />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </section>
 

@@ -1,6 +1,9 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronRight, Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+
+import useReducedMotionPreference from '../../hooks/useReducedMotionPreference'
 
 const logoSrc = '/assets/logos/logo.png'
 
@@ -15,6 +18,7 @@ const navLinks = [
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const prefersReducedMotion = useReducedMotionPreference()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,7 +39,7 @@ function Navbar() {
 
   const getLinkClass = ({ isActive }) =>
     [
-      'relative px-1 py-2 text-sm font-semibold uppercase tracking-[0.18em] transition duration-300 ease-out',
+      'relative px-1 py-2 text-sm font-semibold uppercase tracking-[0.18em] transition duration-300 ease-out hover:-translate-y-px',
       isActive
         ? 'text-white after:absolute after:inset-x-1 after:-bottom-1 after:h-px after:bg-cyan-300 after:shadow-[0_0_14px_rgba(0,217,255,0.75)]'
         : 'text-white/62 hover:text-cyan-200',
@@ -107,38 +111,56 @@ function Navbar() {
         </button>
       </div>
 
-      {isOpen ? (
-        <nav
-          aria-label="Mobile navigation"
-          className="mx-auto mt-4 flex max-w-[92rem] flex-col gap-1 border border-white/10 bg-[#050505]/90 p-4 shadow-[0_18px_70px_rgba(0,0,0,0.4)] backdrop-blur-xl lg:hidden"
-        >
-          {navLinks.map((link) => (
-            <NavLink
-              className={({ isActive }) =>
-                [
-                  'rounded-2xl px-4 py-3 text-sm font-semibold uppercase tracking-[0.2em] transition duration-300',
-                  isActive
-                    ? 'bg-cyan-300/10 text-cyan-200 shadow-[inset_0_0_0_1px_rgba(0,217,255,0.26)]'
-                    : 'text-white/68 hover:bg-white/[0.04] hover:text-white',
-                ].join(' ')
-              }
-              key={link.to}
-              onClick={closeMenu}
-              to={link.to}
-            >
-              {link.label}
-            </NavLink>
-          ))}
-          <Link
-            className="mt-2 inline-flex items-center justify-center gap-2 border border-cyan-300/70 bg-black/30 px-5 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-[0_0_20px_rgba(0,217,255,0.18)] transition duration-300 hover:bg-cyan-300 hover:text-black"
-            onClick={closeMenu}
-            to="/contact"
+      <AnimatePresence>
+        {isOpen ? (
+          <motion.nav
+            animate={{ opacity: 1, y: 0 }}
+            aria-label="Mobile navigation"
+            className="mx-auto mt-4 flex max-w-[92rem] flex-col gap-1 border border-cyan-300/15 bg-[#050505]/92 p-4 shadow-[0_18px_70px_rgba(0,0,0,0.4)] backdrop-blur-xl lg:hidden"
+            exit={{ opacity: 0, y: prefersReducedMotion ? 0 : -8 }}
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : -8 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
           >
-            Book Now
-            <ChevronRight aria-hidden="true" size={16} />
-          </Link>
-        </nav>
-      ) : null}
+            {navLinks.map((link, index) => (
+              <motion.div
+                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 8 }}
+                key={link.to}
+                transition={{ delay: prefersReducedMotion ? 0 : index * 0.045, duration: 0.22 }}
+              >
+                <NavLink
+                  className={({ isActive }) =>
+                    [
+                      'block rounded-2xl px-4 py-3 text-sm font-semibold uppercase tracking-[0.2em] transition duration-300',
+                      isActive
+                        ? 'bg-cyan-300/10 text-cyan-200 shadow-[inset_0_0_0_1px_rgba(0,217,255,0.26)]'
+                        : 'text-white/68 hover:bg-white/[0.04] hover:text-white',
+                    ].join(' ')
+                  }
+                  onClick={closeMenu}
+                  to={link.to}
+                >
+                  {link.label}
+                </NavLink>
+              </motion.div>
+            ))}
+            <motion.div
+              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 8 }}
+              transition={{ delay: prefersReducedMotion ? 0 : navLinks.length * 0.045, duration: 0.22 }}
+            >
+              <Link
+                className="mt-2 inline-flex w-full items-center justify-center gap-2 border border-cyan-300/70 bg-black/30 px-5 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-[0_0_20px_rgba(0,217,255,0.18)] transition duration-300 hover:bg-cyan-300 hover:text-black"
+                onClick={closeMenu}
+                to="/contact"
+              >
+                Book Now
+                <ChevronRight aria-hidden="true" size={16} />
+              </Link>
+            </motion.div>
+          </motion.nav>
+        ) : null}
+      </AnimatePresence>
     </header>
   )
 }

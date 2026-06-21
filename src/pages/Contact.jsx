@@ -10,6 +10,7 @@ import {
 
 import BookingForm from '../components/contact/BookingForm'
 import { serviceCatalogue } from '../data/services'
+import useReducedMotionPreference from '../hooks/useReducedMotionPreference'
 
 const {
   coreDetailingPackages,
@@ -88,6 +89,8 @@ const mapLabels = [
 ]
 
 function Contact() {
+  const prefersReducedMotion = useReducedMotionPreference()
+
   return (
     <div className="min-h-screen bg-[#050505] text-white">
       <section className="relative overflow-hidden border-b border-white/10 bg-[#050505] pt-32 sm:pt-36 lg:pt-28">
@@ -259,13 +262,23 @@ function Contact() {
                 aria-hidden="true"
                 className="absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:42px_42px]"
               />
-              <div
+              <motion.div
                 aria-hidden="true"
                 className="absolute left-1/2 top-1/2 h-[19rem] w-[19rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-300/70 bg-cyan-300/[0.07] shadow-[0_0_48px_rgba(0,217,255,0.2)] sm:h-[23rem] sm:w-[23rem]"
+                animate={prefersReducedMotion ? undefined : { opacity: [0.76, 1, 0.76], scale: [1, 1.025, 1] }}
+                transition={{ duration: 5.8, ease: 'easeInOut', repeat: Infinity }}
               />
-              <div
+              <motion.div
                 aria-hidden="true"
                 className="absolute left-1/2 top-1/2 h-[11rem] w-[11rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-300/20"
+                animate={prefersReducedMotion ? undefined : { opacity: [0.44, 0.82, 0.44], scale: [1, 1.06, 1] }}
+                transition={{ duration: 4.8, ease: 'easeInOut', repeat: Infinity }}
+              />
+              <motion.span
+                aria-hidden="true"
+                animate={prefersReducedMotion ? undefined : { opacity: [0.65, 1, 0.65], scale: [1, 1.2, 1] }}
+                className="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300 shadow-[0_0_22px_rgba(0,217,255,0.8)]"
+                transition={{ duration: 3.6, ease: 'easeInOut', repeat: Infinity }}
               />
               <p className="absolute left-6 top-6 max-w-48 text-[0.62rem] uppercase tracking-[0.18em] text-white/42">
                 Decorative radius visual, not a precise coverage map

@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion'
+import gsap from 'gsap'
 import { ChevronDown, ChevronRight, ShieldCheck, Sparkles, Truck, Wrench } from 'lucide-react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import useReducedMotionPreference from '../hooks/useReducedMotionPreference'
 import { serviceCatalogue } from '../data/services'
 
 const heroBackground = '/assets/images/new-home-wallpaper.jpg'
@@ -140,6 +143,41 @@ function PackagePreviewCard({ packageData, index }) {
 function Home() {
   const corePackages = serviceCatalogue.coreDetailingPackages
   const fleet = serviceCatalogue.fleetMaintenance
+  const heroImageRef = useRef(null)
+  const prefersReducedMotion = useReducedMotionPreference()
+
+  useEffect(() => {
+    if (prefersReducedMotion || !heroImageRef.current) return undefined
+
+    const desktopQuery = window.matchMedia('(min-width: 1024px)')
+    if (!desktopQuery.matches) return undefined
+
+    const heroImage = heroImageRef.current
+    let removePointerMove
+    const ctx = gsap.context(() => {
+      const handlePointerMove = (event) => {
+        const x = ((event.clientX / window.innerWidth) - 0.5) * 16
+        const y = ((event.clientY / window.innerHeight) - 0.5) * 10
+
+        gsap.to(heroImage, {
+          duration: 1.25,
+          ease: 'power3.out',
+          overwrite: 'auto',
+          x,
+          y,
+        })
+      }
+
+      window.addEventListener('pointermove', handlePointerMove, { passive: true })
+      removePointerMove = () => window.removeEventListener('pointermove', handlePointerMove)
+    }, heroImageRef)
+
+    return () => {
+      removePointerMove?.()
+      gsap.killTweensOf(heroImage)
+      ctx.revert()
+    }
+  }, [prefersReducedMotion])
 
   return (
     <div className="min-h-screen bg-[#050505] text-white">
@@ -149,6 +187,7 @@ function Home() {
         animate={{ opacity: 1, scale: 1.025 }}
         className="absolute inset-0 h-full w-full object-cover object-[center_56%] brightness-[1.3] contrast-[1.08]"
         initial={{ opacity: 0, scale: 1.06 }}
+        ref={heroImageRef}
         src={heroBackground}
         transition={{ duration: 1.3, ease: 'easeOut' }}
       />

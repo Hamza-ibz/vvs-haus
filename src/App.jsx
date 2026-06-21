@@ -1,3 +1,4 @@
+import { MotionConfig } from 'framer-motion'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
@@ -12,21 +13,23 @@ import './App.css'
 
 function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <LoadingScreen />
-      <Navbar />
-      <main>
-        <Routes>
-          <Route element={<Home />} path="/" />
-          <Route element={<Services />} path="/services" />
-          <Route element={<Gallery />} path="/gallery" />
-          <Route element={<About />} path="/about" />
-          <Route element={<Contact />} path="/contact" />
-        </Routes>
-      </main>
-      <Footer />
-    </BrowserRouter>
+    <MotionConfig reducedMotion="user">
+      <BrowserRouter>
+        <ScrollToTop />
+        <LoadingScreen />
+        <Navbar />
+        <main>
+          <Routes>
+            <Route element={<Home />} path="/" />
+            <Route element={<Services />} path="/services" />
+            <Route element={<Gallery />} path="/gallery" />
+            <Route element={<About />} path="/about" />
+            <Route element={<Contact />} path="/contact" />
+          </Routes>
+        </main>
+        <Footer />
+      </BrowserRouter>
+    </MotionConfig>
   )
 }
 

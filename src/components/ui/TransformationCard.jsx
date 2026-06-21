@@ -1,4 +1,10 @@
+import { motion } from 'framer-motion'
+
+import useReducedMotionPreference from '../../hooks/useReducedMotionPreference'
+
 function TransformationCard({ item, onOpen }) {
+  const prefersReducedMotion = useReducedMotionPreference()
+
   const beforeItem = {
     id: `${item.id}-before`,
     title: `${item.title} Before`,
@@ -16,7 +22,10 @@ function TransformationCard({ item, onOpen }) {
   }
 
   return (
-    <article className="overflow-hidden border border-white/12 bg-[#0a0a0a] shadow-[0_18px_60px_rgba(0,0,0,0.34)] transition duration-300 hover:border-cyan-300/45 hover:shadow-[0_0_34px_rgba(0,217,255,0.12)]">
+    <motion.article
+      className="overflow-hidden border border-white/12 bg-[#0a0a0a] shadow-[0_18px_60px_rgba(0,0,0,0.34)] transition duration-300 hover:border-cyan-300/45 hover:shadow-[0_0_34px_rgba(0,217,255,0.12)]"
+      whileHover={prefersReducedMotion ? undefined : { y: -5 }}
+    >
       <div className="grid md:grid-cols-2">
         <button
           aria-label={`View ${item.title} before image`}
@@ -33,6 +42,13 @@ function TransformationCard({ item, onOpen }) {
           <span className="absolute bottom-4 left-4 text-[0.66rem] font-bold uppercase tracking-[0.18em] text-white">
             Before
           </span>
+          <motion.span
+            aria-hidden="true"
+            className="absolute right-0 top-0 hidden h-full w-px origin-top bg-white/45 shadow-[0_0_18px_rgba(255,255,255,0.25)] md:block"
+            initial={prefersReducedMotion ? false : { scaleY: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            whileInView={prefersReducedMotion ? undefined : { scaleY: 1 }}
+          />
         </button>
 
         <button
@@ -60,7 +76,7 @@ function TransformationCard({ item, onOpen }) {
           <p className="mt-3 text-sm leading-6 text-white/62">{item.description}</p>
         ) : null}
       </div>
-    </article>
+    </motion.article>
   )
 }
 

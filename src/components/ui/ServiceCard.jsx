@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import {
   Armchair,
   Droplet,
@@ -5,6 +6,8 @@ import {
   Sparkles,
   Truck,
 } from 'lucide-react'
+
+import useReducedMotionPreference from '../../hooks/useReducedMotionPreference'
 
 const iconMap = {
   armchair: Armchair,
@@ -24,14 +27,17 @@ function ServiceCard({
   className = '',
 }) {
   const Icon = iconMap[icon] ?? Sparkles
+  const prefersReducedMotion = useReducedMotionPreference()
 
   return (
-    <article
+    <motion.article
       className={[
         'group flex min-h-full flex-col overflow-hidden border border-white/[0.12] bg-[#070707]/90 shadow-[0_18px_70px_rgba(0,0,0,0.36)] backdrop-blur-xl',
         'transition duration-300 ease-out hover:-translate-y-1 hover:border-cyan-300/50 hover:shadow-[0_24px_90px_rgba(0,217,255,0.16)]',
         className,
       ].join(' ')}
+      whileHover={prefersReducedMotion ? undefined : { y: -6 }}
+      whileTap={prefersReducedMotion ? undefined : { scale: 0.99 }}
     >
       {image ? (
         <div className="aspect-[1.35] overflow-hidden bg-[#111111]">
@@ -65,7 +71,7 @@ function ServiceCard({
           </p>
         ) : null}
       </div>
-    </article>
+    </motion.article>
   )
 }
 

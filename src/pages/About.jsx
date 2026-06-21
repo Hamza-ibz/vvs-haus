@@ -205,8 +205,18 @@ function About() {
           viewport={{ once: true, amount: 0.25 }}
           whileInView={{ opacity: 1, x: 0 }}
         >
-          <div className="grid h-full gap-3 rounded-xl border border-cyan-300/15 bg-black/30 p-3 shadow-[0_0_24px_rgba(0,217,255,0.04)] lg:grid-rows-3">
-            <div className="group relative h-56 overflow-hidden rounded-xl border border-cyan-300/15 bg-black/30 shadow-[0_0_24px_rgba(0,217,255,0.04)] sm:h-64 lg:h-auto">
+          <motion.div
+            className="grid h-full gap-3 rounded-xl border border-cyan-300/15 bg-black/30 p-3 shadow-[0_0_24px_rgba(0,217,255,0.04)] lg:grid-rows-3"
+            initial="hidden"
+            transition={{ staggerChildren: 0.08 }}
+            viewport={{ once: true, amount: 0.18 }}
+            whileInView="visible"
+          >
+            <motion.div
+              className="group relative h-56 overflow-hidden rounded-xl border border-cyan-300/15 bg-black/30 shadow-[0_0_24px_rgba(0,217,255,0.04)] sm:h-64 lg:h-auto"
+              variants={fadeUp}
+              whileHover={{ y: -4 }}
+            >
               <img
                 alt="VVS Haus branded mobile detailing van"
                 className="h-full w-full object-cover object-[70%_40%] brightness-[0.98] contrast-[1.06] saturate-[1.02] transition duration-700 group-hover:scale-[1.02]"
@@ -216,9 +226,13 @@ function About() {
               <span className="absolute bottom-4 left-4 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-white/72">
                 Mobile Detailing
               </span>
-            </div>
+            </motion.div>
 
-            <div className="group relative h-56 overflow-hidden rounded-xl border border-cyan-300/15 bg-black/30 shadow-[0_0_24px_rgba(0,217,255,0.04)] sm:h-64 lg:h-auto">
+            <motion.div
+              className="group relative h-56 overflow-hidden rounded-xl border border-cyan-300/15 bg-black/30 shadow-[0_0_24px_rgba(0,217,255,0.04)] sm:h-64 lg:h-auto"
+              variants={fadeUp}
+              whileHover={{ y: -4 }}
+            >
               <img
                 alt="VVS Haus branded hoodie"
                 className="h-full w-full object-cover object-[68%_50%] brightness-[0.98] contrast-[1.06] saturate-[1.02] transition duration-700 group-hover:scale-[1.02]"
@@ -228,9 +242,13 @@ function About() {
               <span className="absolute bottom-4 left-4 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-white/72">
                 Built On Passion
               </span>
-            </div>
+            </motion.div>
 
-            <div className="group relative h-56 overflow-hidden rounded-xl border border-cyan-300/15 bg-black/30 shadow-[0_0_24px_rgba(0,217,255,0.04)] sm:h-64 lg:h-auto">
+            <motion.div
+              className="group relative h-56 overflow-hidden rounded-xl border border-cyan-300/15 bg-black/30 shadow-[0_0_24px_rgba(0,217,255,0.04)] sm:h-64 lg:h-auto"
+              variants={fadeUp}
+              whileHover={{ y: -4 }}
+            >
               <img
                 alt="VVS Haus business card displayed on a detailed vehicle"
                 className="h-full w-full object-cover object-[72%_50%] brightness-[0.98] contrast-[1.06] saturate-[1.02] transition duration-700 group-hover:scale-[1.02]"
@@ -240,8 +258,8 @@ function About() {
               <span className="absolute bottom-4 left-4 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-white/72">
                 Attention To Detail
               </span>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </motion.div>
 
         <motion.div
