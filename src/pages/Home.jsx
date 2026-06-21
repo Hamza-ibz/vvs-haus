@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { ChevronDown, ChevronRight, ShieldCheck, Sparkles, Truck, Wrench } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { serviceCatalogue } from '../data/services'
 
 const heroBackground = '/assets/images/new-home-wallpaper.jpg'
 const heroLogo = '/assets/logos/logo.png'
@@ -28,6 +29,24 @@ const featureStrip = [
   },
 ]
 
+const packageBadges = {
+  'vvs-haus-special': ['Most Popular', 'Recommended for first-time customers'],
+  'showroom-refresh': ['Most Comprehensive'],
+}
+
+const specialistPreviews = [
+  {
+    title: 'Paint Correction & Polishing',
+    copy: 'Restore gloss and clarity while reducing light swirl marks and paint imperfections.',
+    cta: 'Explore Paint Correction',
+  },
+  {
+    title: 'Ceramic Coatings',
+    copy: 'Long-lasting protection designed to enhance gloss and defend your vehicle’s finish.',
+    cta: 'Explore Ceramic Coatings',
+  },
+]
+
 const container = {
   hidden: { opacity: 0 },
   visible: {
@@ -48,9 +67,83 @@ const item = {
   },
 }
 
-function Home() {
+function SectionIntro({ eyebrow, title, copy }) {
   return (
-    <section className="relative left-1/2 h-svh min-h-[700px] w-screen -translate-x-1/2 overflow-hidden bg-[#050505] px-5 pb-4 pt-24 text-white sm:px-8 lg:min-h-0 lg:px-12">
+    <div className="mx-auto max-w-3xl text-center">
+      <p className="text-xs font-bold uppercase tracking-[0.32em] text-cyan-300">
+        {eyebrow}
+      </p>
+      <h2 className="mt-4 font-['Orbitron'] text-3xl font-semibold uppercase leading-tight tracking-[0.08em] text-white sm:text-4xl">
+        {title}
+      </h2>
+      {copy ? (
+        <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-white/66 sm:text-base">
+          {copy}
+        </p>
+      ) : null}
+    </div>
+  )
+}
+
+function PackagePreviewCard({ packageData, index }) {
+  const badges = packageBadges[packageData.slug] ?? []
+
+  return (
+    <Link
+      className="group flex min-h-full flex-col border border-white/[0.12] bg-[#090909]/88 p-6 shadow-[0_18px_70px_rgba(0,0,0,0.36)] backdrop-blur-xl transition duration-300 ease-out hover:-translate-y-1 hover:border-cyan-300/50 hover:shadow-[0_24px_90px_rgba(0,217,255,0.15)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+      to="/services"
+    >
+      <div className="mb-5 flex items-center justify-between gap-4">
+        <span className="font-['Orbitron'] text-lg font-semibold tracking-[0.14em] text-cyan-300">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+        <span className="text-right font-['Orbitron'] text-base font-semibold uppercase tracking-[0.16em] text-cyan-300">
+          {packageData.price}
+        </span>
+      </div>
+
+      <h3 className="font-['Orbitron'] text-lg font-semibold uppercase leading-snug tracking-[0.08em] text-white">
+        {packageData.title}
+      </h3>
+      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.18em] text-white/50">
+        {packageData.duration}
+      </p>
+      <p className="mt-5 flex-1 text-sm leading-7 text-white/68">
+        {packageData.description}
+      </p>
+
+      {badges.length ? (
+        <div className="mt-6 flex flex-wrap gap-2">
+          {badges.map((badge) => (
+            <span
+              className="border border-cyan-300/25 bg-cyan-300/[0.06] px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-cyan-200"
+              key={badge}
+            >
+              {badge}
+            </span>
+          ))}
+        </div>
+      ) : null}
+
+      <span className="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-white transition group-hover:text-cyan-200">
+        View Package
+        <ChevronRight
+          aria-hidden="true"
+          className="text-cyan-300 transition group-hover:translate-x-1"
+          size={16}
+        />
+      </span>
+    </Link>
+  )
+}
+
+function Home() {
+  const corePackages = serviceCatalogue.coreDetailingPackages
+  const fleet = serviceCatalogue.fleetMaintenance
+
+  return (
+    <div className="min-h-screen bg-[#050505] text-white">
+      <section className="relative left-1/2 h-svh min-h-[700px] w-screen -translate-x-1/2 overflow-hidden bg-[#050505] px-5 pb-4 pt-24 text-white sm:px-8 lg:min-h-0 lg:px-12">
       <motion.img
         alt="VVS Haus cinematic mobile detailing background"
         animate={{ opacity: 1, scale: 1.025 }}
@@ -201,7 +294,208 @@ function Home() {
           ))}
         </motion.div>
       </motion.div>
-    </section>
+      </section>
+
+      <motion.section
+        className="border-b border-white/10 px-6 py-16 sm:px-8 lg:px-12"
+        initial="hidden"
+        variants={container}
+        viewport={{ once: true, amount: 0.25 }}
+        whileInView="visible"
+      >
+        <motion.div className="mx-auto max-w-[92rem]" variants={item}>
+          <SectionIntro
+            copy="VVS Haus delivers professional mobile detailing built around quality, convenience, and attention to detail. From regular maintenance to full vehicle transformations, every service is completed to a high visual standard."
+            eyebrow="Visual Vehicle Standards"
+            title="Setting The Standard Since 2018."
+          />
+          <div className="mt-8 flex justify-center">
+            <Link
+              className="group inline-flex items-center justify-center gap-3 border border-white/15 bg-white/[0.03] px-7 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-white transition duration-300 ease-out hover:-translate-y-0.5 hover:border-cyan-300/55 hover:text-cyan-200 hover:shadow-[0_0_32px_rgba(0,217,255,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+              to="/about"
+            >
+              Our Story
+              <ChevronRight
+                aria-hidden="true"
+                className="text-cyan-300 transition group-hover:translate-x-1"
+                size={16}
+              />
+            </Link>
+          </div>
+        </motion.div>
+      </motion.section>
+
+      <motion.section
+        className="px-6 py-16 sm:px-8 lg:px-12"
+        initial="hidden"
+        variants={container}
+        viewport={{ once: true, amount: 0.18 }}
+        whileInView="visible"
+      >
+        <div className="mx-auto max-w-[92rem]">
+          <motion.div variants={item}>
+            <SectionIntro
+              copy="A focused preview of the core VVS Haus packages. The full service catalogue, inclusions, add-ons, and booking notes live on the Services page."
+              eyebrow="Main Packages"
+              title="Professional Mobile Detailing"
+            />
+          </motion.div>
+
+          <motion.div
+            className="mt-10 grid gap-5 lg:grid-cols-3"
+            variants={container}
+          >
+            {corePackages.map((packageData, index) => (
+              <motion.div key={packageData.id} variants={item}>
+                <PackagePreviewCard index={index} packageData={packageData} />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div className="mt-9 flex justify-center" variants={item}>
+            <Link
+              className="group inline-flex items-center justify-center gap-3 border border-cyan-300/70 bg-black/40 px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-[0_0_30px_rgba(0,217,255,0.16)] transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-cyan-300 hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+              to="/services"
+            >
+              View All Services
+              <ChevronRight
+                aria-hidden="true"
+                className="text-cyan-300 transition group-hover:translate-x-1 group-hover:text-black"
+                size={17}
+              />
+            </Link>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        className="border-y border-white/10 bg-[#070707] px-6 py-14 sm:px-8 lg:px-12"
+        initial="hidden"
+        variants={container}
+        viewport={{ once: true, amount: 0.2 }}
+        whileInView="visible"
+      >
+        <div className="mx-auto grid max-w-[92rem] gap-5 lg:grid-cols-2">
+          {specialistPreviews.map((preview) => (
+            <motion.article
+              className="group border border-white/[0.12] bg-[#050505]/80 p-7 shadow-[0_18px_70px_rgba(0,0,0,0.34)] transition duration-300 ease-out hover:-translate-y-1 hover:border-cyan-300/45 hover:shadow-[0_24px_90px_rgba(0,217,255,0.14)]"
+              key={preview.title}
+              variants={item}
+            >
+              <Sparkles
+                aria-hidden="true"
+                className="mb-6 text-cyan-300 drop-shadow-[0_0_16px_rgba(0,217,255,0.45)]"
+                size={34}
+                strokeWidth={1.45}
+              />
+              <h2 className="font-['Orbitron'] text-xl font-semibold uppercase tracking-[0.08em] text-white">
+                {preview.title}
+              </h2>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-white/66">
+                {preview.copy}
+              </p>
+              <Link
+                className="mt-7 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-cyan-200 transition group-hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+                to="/services"
+              >
+                {preview.cta}
+                <ChevronRight aria-hidden="true" size={16} />
+              </Link>
+            </motion.article>
+          ))}
+        </div>
+      </motion.section>
+
+      <motion.section
+        className="px-6 py-16 sm:px-8 lg:px-12"
+        initial="hidden"
+        variants={container}
+        viewport={{ once: true, amount: 0.18 }}
+        whileInView="visible"
+      >
+        <motion.div
+          className="mx-auto grid max-w-[92rem] gap-8 border border-cyan-300/20 bg-[#090909]/90 p-7 shadow-[0_0_54px_rgba(0,217,255,0.08)] lg:grid-cols-[0.9fr_1.1fr] lg:p-10"
+          variants={item}
+        >
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.32em] text-cyan-300">
+              Business Care
+            </p>
+            <h2 className="mt-4 font-['Orbitron'] text-3xl font-semibold uppercase tracking-[0.08em] text-white">
+              {fleet.title}
+            </h2>
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-white/68 sm:text-base">
+              Discounted maintenance packages are available for fleets of two or more vehicles on a regular 1–2 week schedule.
+            </p>
+            <Link
+              className="group mt-8 inline-flex items-center justify-center gap-3 border border-cyan-300/70 bg-black/40 px-7 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-white transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-cyan-300 hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+              to="/contact"
+            >
+              Request A Bespoke Quote
+              <ChevronRight
+                aria-hidden="true"
+                className="text-cyan-300 transition group-hover:translate-x-1 group-hover:text-black"
+                size={16}
+              />
+            </Link>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {fleet.suitableFor.map((itemLabel) => (
+              <div
+                className="flex items-center gap-3 border border-white/10 bg-white/[0.03] px-4 py-4"
+                key={itemLabel}
+              >
+                <ShieldCheck
+                  aria-hidden="true"
+                  className="shrink-0 text-cyan-300"
+                  size={20}
+                  strokeWidth={1.55}
+                />
+                <span className="text-sm font-semibold uppercase tracking-[0.12em] text-white/82">
+                  {itemLabel}
+                </span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </motion.section>
+
+      <motion.section
+        className="border-t border-white/10 bg-[linear-gradient(90deg,rgba(0,217,255,0.08),transparent_32%,transparent_68%,rgba(0,217,255,0.06))] px-6 py-14 sm:px-8 lg:px-12"
+        initial="hidden"
+        variants={container}
+        viewport={{ once: true, amount: 0.25 }}
+        whileInView="visible"
+      >
+        <motion.div
+          className="mx-auto flex max-w-[92rem] flex-col items-center justify-between gap-7 text-center lg:flex-row lg:text-left"
+          variants={item}
+        >
+          <div>
+            <h2 className="font-['Orbitron'] text-2xl font-semibold uppercase tracking-[0.08em] text-white sm:text-3xl">
+              Ready For That <span className="text-cyan-300">VVS Finish?</span>
+            </h2>
+            <p className="mt-3 text-base text-white/68">
+              Professional mobile detailing delivered to you.
+            </p>
+            <p className="mt-2 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-200">
+              Setting the Standard Since 2018.
+            </p>
+          </div>
+          <Link
+            className="group inline-flex min-h-14 items-center justify-center gap-3 border border-cyan-300/70 bg-black/40 px-8 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-[0_0_30px_rgba(0,217,255,0.16)] transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-cyan-300 hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+            to="/contact"
+          >
+            Book Your Detail
+            <ChevronRight
+              aria-hidden="true"
+              className="text-cyan-300 transition group-hover:translate-x-1 group-hover:text-black"
+              size={17}
+            />
+          </Link>
+        </motion.div>
+      </motion.section>
+    </div>
   )
 }
 

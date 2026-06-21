@@ -4,13 +4,39 @@ import {
   ChevronRight,
   Clock,
   Home,
-  Mail,
   MapPin,
-  MessageCircle,
-  Phone,
   ShieldCheck,
 } from 'lucide-react'
-import { Link } from 'react-router-dom'
+
+import BookingForm from '../components/contact/BookingForm'
+import { serviceCatalogue } from '../data/services'
+
+const {
+  coreDetailingPackages,
+  importantInformation,
+  paintCorrectionAndPolishing,
+  refreshServices,
+} = serviceCatalogue
+
+const packageOptions = [
+  ...coreDetailingPackages.map((service) => service.title),
+  ...refreshServices.map((service) => service.title),
+  paintCorrectionAndPolishing.featuredService.title,
+  'Ceramic Coating',
+  'Fleet Maintenance',
+  'Bespoke Quote',
+]
+
+const bookingInformation = importantInformation.filter(({ id }) =>
+  [
+    'pricing-basis',
+    'photos-videos',
+    'booking-deposit',
+    'travel-charges',
+    'congestion-zone',
+    'results-vary',
+  ].includes(id),
+)
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -30,79 +56,36 @@ const trustItems = [
   },
   {
     title: 'Fast Response',
-    text: 'We reply within 1 hour',
-    Icon: Clock,
-  },
-]
-
-const contactItems = [
-  {
-    label: 'Phone / WhatsApp',
-    value: '07712 345678',
-    Icon: Phone,
-  },
-  {
-    label: 'Email',
-    value: 'info@vvshaus.com',
-    Icon: Mail,
-  },
-  {
-    label: 'Instagram',
-    value: '@vvshaus',
-    Icon: MessageCircle,
-  },
-  {
-    label: 'Business Hours',
-    value: 'Mon - Sun: 8:00am - 8:00pm',
+    text: 'We respond promptly',
     Icon: Clock,
   },
 ]
 
 const serviceAreaPoints = [
   {
-    title: 'London & Surrounding Areas',
-    text: 'Covering all major areas within and around London.',
+    title: 'Mobile Service',
+    text: 'Professional detailing delivered to your chosen location.',
     Icon: MapPin,
   },
   {
-    title: 'Home, Work Or Anywhere',
-    text: 'We come to your home, workplace or any location that suits you.',
+    title: 'E2 Service Radius',
+    text: 'Additional travel charges may apply beyond 5 miles.',
     Icon: Home,
   },
   {
-    title: 'Flexible Appointments',
-    text: 'Appointments that work around your schedule.',
+    title: 'Congestion Zone',
+    text: 'Locations within the Congestion Zone are subject to a £15 surcharge.',
     Icon: Clock,
   },
 ]
 
 const mapLabels = [
-  { label: 'Watford', className: 'left-[15%] top-[30%]' },
-  { label: 'Enfield', className: 'left-[58%] top-[22%]' },
-  { label: 'Romford', className: 'right-[13%] top-[38%]' },
-  { label: 'London', className: 'left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-lg sm:text-2xl' },
-  { label: 'Croydon', className: 'left-[52%] bottom-[18%]' },
-  { label: 'Kingston', className: 'left-[24%] bottom-[27%]' },
-  { label: 'Hounslow', className: 'left-[18%] top-[54%]' },
-  { label: 'Dartford', className: 'right-[13%] bottom-[28%]' },
+  { label: '5 Mile Radius', className: 'left-[14%] top-[26%]' },
+  { label: 'Travel Charges May Apply', className: 'right-[10%] top-[34%]' },
+  { label: 'E2', className: 'left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-lg sm:text-2xl' },
+  { label: 'Mobile Detailing', className: 'left-[18%] bottom-[28%]' },
+  { label: 'Congestion Zone Surcharge', className: 'right-[10%] bottom-[24%]' },
 ]
-
-function Field({ as = 'input', children, className = '', label, ...props }) {
-  const Component = as
-
-  return (
-    <label className={className}>
-      <span className="sr-only">{label}</span>
-      <Component
-        aria-label={label}
-        className="w-full border border-white/14 bg-black/35 px-4 py-4 text-sm text-white outline-none transition placeholder:text-white/48 focus:border-cyan-300/75 focus:shadow-[0_0_24px_rgba(0,217,255,0.12)]"
-        {...props}
-      >
-        {children}
-      </Component>
-    </label>
-  )
-}
 
 function Contact() {
   return (
@@ -159,8 +142,8 @@ function Contact() {
               className="mt-6 max-w-md text-base leading-8 text-white/78"
               variants={fadeUp}
             >
-              Have a question or ready to book Professional Mobile Detailing? Fill
-              out the form and we’ll take care of the rest.
+              To request a booking, please complete the form with your vehicle,
+              location, desired service, and preferred appointment details.
             </motion.p>
 
             <motion.div
@@ -190,42 +173,7 @@ function Contact() {
           viewport={{ once: true, amount: 0.25 }}
           whileInView={{ opacity: 1, x: 0 }}
         >
-          <h2 className="font-['Orbitron'] text-2xl font-semibold uppercase tracking-[0.08em] text-white">
-            <span className="text-cyan-300">Send</span> Us A Message
-          </h2>
-          <form className="mt-7 grid gap-4" onSubmit={(event) => event.preventDefault()}>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <Field label="Full Name" name="name" placeholder="Full Name" type="text" />
-              <Field label="Phone Number" name="phone" placeholder="Phone Number" type="tel" />
-            </div>
-            <Field label="Email Address" name="email" placeholder="Email Address" type="email" />
-            <Field as="select" defaultValue="" label="Service You’re Interested In" name="service">
-              <option disabled value="">Service You’re Interested In</option>
-              <option>Maintenance Wash</option>
-              <option>Deep Interior Detail</option>
-              <option>Paint Enhancement</option>
-              <option>Ceramic Coating</option>
-              <option>Mobile Valeting</option>
-            </Field>
-            <Field
-              as="textarea"
-              label="Message"
-              name="message"
-              placeholder="Message"
-              rows={5}
-            />
-            <button
-              className="group inline-flex items-center justify-center gap-3 border border-cyan-300/70 bg-black/35 px-8 py-4 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_28px_rgba(0,217,255,0.16)] transition duration-300 hover:-translate-y-0.5 hover:border-cyan-200 hover:shadow-[0_0_38px_rgba(0,217,255,0.28)]"
-              type="submit"
-            >
-              Send Message
-              <ChevronRight aria-hidden="true" className="text-cyan-300 transition group-hover:translate-x-1" size={18} />
-            </button>
-          </form>
-          <p className="mt-4 flex items-center gap-3 text-xs text-white/58">
-            <ShieldCheck aria-hidden="true" className="text-cyan-300" size={17} />
-            Your details are safe with us. We never share your information.
-          </p>
+          <BookingForm packageOptions={packageOptions} />
         </motion.div>
 
         <motion.div
@@ -237,37 +185,31 @@ function Contact() {
           <h2 className="font-['Orbitron'] text-2xl font-semibold uppercase tracking-[0.08em] text-white">
             Contact Details
           </h2>
-          <div className="mt-7 space-y-6">
-            {contactItems.map(({ Icon, label, value }) => (
-              <div className="flex gap-5" key={label}>
-                <Icon aria-hidden="true" className="mt-1 shrink-0 text-cyan-300" size={28} strokeWidth={1.45} />
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-white">
-                    {label}
-                  </p>
-                  <p className="mt-2 text-sm text-cyan-300">{value}</p>
-                </div>
-              </div>
-            ))}
+          <div className="mt-7 border border-white/12 bg-black/30 p-6">
+            <p className="text-sm leading-7 text-white/70">
+              Approved public contact details have not been added yet. Please use
+              the booking form to prepare your request.
+            </p>
           </div>
 
-          <Link
-            className="group mt-9 flex items-center justify-between gap-6 border border-white/12 bg-black/30 p-6 transition duration-300 hover:border-cyan-300/55 hover:shadow-[0_0_34px_rgba(0,217,255,0.14)]"
-            to="/contact"
-          >
-            <div className="flex items-center gap-5">
-              <MessageCircle aria-hidden="true" className="shrink-0 text-cyan-300" size={38} strokeWidth={1.45} />
-              <div>
-                <h3 className="font-['Orbitron'] text-sm font-semibold uppercase tracking-[0.12em] text-white">
-                  Prefer WhatsApp?
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-white/66">
-                  Message us directly on WhatsApp for the fastest response.
-                </p>
-              </div>
-            </div>
-            <ChevronRight aria-hidden="true" className="shrink-0 text-cyan-300 transition group-hover:translate-x-1" size={20} />
-          </Link>
+          <div className="mt-8 border border-cyan-300/24 bg-cyan-300/[0.045] p-6 shadow-[0_0_34px_rgba(0,217,255,0.1)]">
+            <h3 className="font-['Orbitron'] text-sm font-semibold uppercase tracking-[0.14em] text-white">
+              Important Booking Information
+            </h3>
+            <ul className="mt-5 grid gap-3">
+              {bookingInformation.map(({ id, text }) => (
+                <li className="flex gap-3 text-sm leading-6 text-white/72" key={id}>
+                  <ShieldCheck
+                    aria-hidden="true"
+                    className="mt-0.5 shrink-0 text-cyan-300"
+                    size={17}
+                    strokeWidth={1.7}
+                  />
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </motion.div>
       </section>
 
@@ -282,8 +224,8 @@ function Contact() {
               We Come To <span className="text-cyan-300">You</span>
             </h2>
             <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-white/70 sm:text-base">
-              We provide mobile detailing across London and surrounding areas. If
-              you’re unsure whether we cover your location, just get in touch.
+              VVS Haus provides professional mobile detailing from the E2 area.
+              Travel charges may apply to appointments beyond a 5-mile radius.
             </p>
           </div>
 
@@ -315,11 +257,14 @@ function Contact() {
                 aria-hidden="true"
                 className="absolute left-1/2 top-1/2 h-[11rem] w-[11rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-300/20"
               />
+              <p className="absolute left-6 top-6 max-w-48 text-[0.62rem] uppercase tracking-[0.18em] text-white/42">
+                Decorative radius visual, not a precise coverage map
+              </p>
               {mapLabels.map(({ className, label }) => (
                 <span
                   className={[
                     'absolute font-["Orbitron"] text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-white/82',
-                    label === 'London' ? 'text-white' : '',
+                    label === 'E2' ? 'text-white' : '',
                     className,
                   ].join(' ')}
                   key={label}
@@ -354,7 +299,8 @@ function Contact() {
               Ready For That <span className="text-cyan-300">VVS Finish?</span>
             </h2>
             <p className="mt-3 text-base text-white/72">
-              Setting the Standard Since 2018.
+              Submit your booking request and we will contact you to confirm availability,
+              pricing, and the next steps.
             </p>
           </motion.div>
 
@@ -363,13 +309,14 @@ function Contact() {
             viewport={{ once: true }}
             whileInView={{ opacity: 1, x: 0 }}
           >
-            <Link
-              className="group inline-flex min-w-72 items-center justify-center gap-3 border border-cyan-300/70 bg-black/35 px-9 py-5 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_28px_rgba(0,217,255,0.16)] transition duration-300 hover:-translate-y-0.5 hover:border-cyan-200 hover:shadow-[0_0_38px_rgba(0,217,255,0.28)]"
-              to="/contact"
+            <button
+              className="group inline-flex min-w-72 items-center justify-center gap-3 border border-cyan-300/70 bg-black/35 px-9 py-5 text-sm font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_28px_rgba(0,217,255,0.16)] transition duration-300 hover:-translate-y-0.5 hover:border-cyan-200 hover:shadow-[0_0_38px_rgba(0,217,255,0.28)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+              onClick={() => document.getElementById('booking-form')?.scrollIntoView({ block: 'start' })}
+              type="button"
             >
-              Book Your Detail
+              Book A Detail
               <ChevronRight aria-hidden="true" className="text-cyan-300 transition group-hover:translate-x-1" size={18} />
-            </Link>
+            </button>
           </motion.div>
         </div>
       </section>

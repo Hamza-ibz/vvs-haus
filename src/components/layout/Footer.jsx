@@ -1,9 +1,19 @@
-import { Camera, Music2, Play } from 'lucide-react'
+import { Link } from 'react-router-dom'
+
+const footerLinks = [
+  { label: 'Home', to: '/' },
+  { label: 'Services', to: '/services' },
+  { label: 'Gallery', to: '/gallery' },
+  { label: 'About', to: '/about' },
+  { label: 'Contact', to: '/contact' },
+]
 
 function Footer() {
+  const currentYear = new Date().getFullYear()
+
   return (
     <footer className="border-t border-white/10 bg-[#030303] px-6 py-7">
-      <div className="mx-auto flex max-w-[92rem] flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left">
+      <div className="mx-auto flex max-w-[92rem] flex-col items-center justify-between gap-7 text-center lg:flex-row lg:text-left">
         <div className="flex items-center gap-4">
           <img
             alt="VVS Haus"
@@ -17,24 +27,37 @@ function Footer() {
             <p className="mt-1 text-xs uppercase tracking-[0.18em] text-white/45">
               Visual Vehicle Standards
             </p>
+            <p className="mt-2 text-xs uppercase tracking-[0.14em] text-white/58">
+              Professional Mobile Detailing
+            </p>
           </div>
         </div>
 
-        <p className="text-xs text-white/42">
-          Established 2018 · Setting the Standard Since 2018
-        </p>
+        <nav
+          aria-label="Footer navigation"
+          className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3"
+        >
+          {footerLinks.map((link) => (
+            <Link
+              className="text-xs font-semibold uppercase tracking-[0.18em] text-white/58 transition hover:text-cyan-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+              key={link.to}
+              to={link.to}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
 
-        <div className="flex items-center gap-4 text-white/82">
-          <span className="sr-only">Social links</span>
-          <span className="inline-flex h-9 w-9 items-center justify-center border border-white/10 transition hover:border-cyan-300/60 hover:text-cyan-200">
-            <Camera aria-hidden="true" size={17} />
-          </span>
-          <span className="inline-flex h-9 w-9 items-center justify-center border border-white/10 transition hover:border-cyan-300/60 hover:text-cyan-200">
-            <Music2 aria-hidden="true" size={17} />
-          </span>
-          <span className="inline-flex h-9 w-9 items-center justify-center border border-white/10 transition hover:border-cyan-300/60 hover:text-cyan-200">
-            <Play aria-hidden="true" size={17} />
-          </span>
+        <div className="text-center lg:text-right">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/58">
+            Established 2018
+          </p>
+          <p className="mt-2 text-xs text-white/42">
+            Setting the Standard Since 2018.
+          </p>
+          <p className="mt-3 text-xs text-white/35">
+            © {currentYear} VVS Haus. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
