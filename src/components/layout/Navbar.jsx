@@ -1,5 +1,5 @@
 import { ChevronRight, Menu, X } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
 const logoSrc = '/assets/logos/logo.png'
@@ -14,6 +14,20 @@ const navLinks = [
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 60)
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   const closeMenu = () => {
     setIsOpen(false)
@@ -28,7 +42,21 @@ function Navbar() {
     ].join(' ')
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 px-5 py-5 sm:px-8 lg:px-16 2xl:px-20">
+    <header
+      className={[
+        'fixed left-0 right-0 top-0 z-50 w-full px-5 py-5 transition-[background,border-color,box-shadow,backdrop-filter] duration-300 sm:px-8 lg:px-16 2xl:px-20',
+        isScrolled
+          ? 'border-b border-cyan-300/10 bg-[linear-gradient(180deg,rgba(0,217,255,0.055)_0%,rgba(5,5,5,0.46)_55%,rgba(5,5,5,0.34)_100%)] shadow-[0_8px_24px_rgba(0,0,0,0.18),0_1px_12px_rgba(0,217,255,0.035)] backdrop-blur-[14px] backdrop-saturate-[1.15]'
+          : 'border-b border-transparent bg-transparent',
+      ].join(' ')}
+    >
+      <div
+        aria-hidden="true"
+        className={[
+          'pointer-events-none absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,217,255,0.35),transparent)] transition-opacity duration-300',
+          isScrolled ? 'opacity-35' : 'opacity-0',
+        ].join(' ')}
+      />
       <div className="mx-auto grid max-w-[92rem] grid-cols-[auto_1fr_auto] items-center gap-4">
         <Link
           aria-label="VVS Haus home"
