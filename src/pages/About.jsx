@@ -198,19 +198,50 @@ function About() {
         </div>
       </section>
 
-      <section className="grid border-b border-white/10 bg-[#050505] lg:grid-cols-[0.68fr_1fr]">
+      <section className="grid items-stretch border-b border-white/10 bg-[#050505] lg:grid-cols-[0.68fr_1fr]">
         <motion.div
-          className="relative min-h-[24rem] overflow-hidden border-b border-white/10 lg:border-b-0 lg:border-r"
+          className="relative overflow-hidden border-b border-white/10 p-4 sm:p-5 lg:border-b-0 lg:border-r"
           initial={{ opacity: 0, x: -24 }}
           viewport={{ once: true, amount: 0.25 }}
           whileInView={{ opacity: 1, x: 0 }}
         >
-          <img
-            alt="VVS Haus branded detailing apparel"
-            className="h-full min-h-[24rem] w-full object-cover object-center brightness-[0.8] contrast-[1.08]"
-            src="/assets/images/hoodie-logo.jpg"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/35 via-transparent to-black/40" />
+          <div className="grid h-full gap-3 rounded-xl border border-cyan-300/15 bg-black/30 p-3 shadow-[0_0_24px_rgba(0,217,255,0.04)] lg:grid-rows-3">
+            <div className="group relative h-56 overflow-hidden rounded-xl border border-cyan-300/15 bg-black/30 shadow-[0_0_24px_rgba(0,217,255,0.04)] sm:h-64 lg:h-auto">
+              <img
+                alt="VVS Haus branded mobile detailing van"
+                className="h-full w-full object-cover object-[70%_40%] brightness-[0.98] contrast-[1.06] saturate-[1.02] transition duration-700 group-hover:scale-[1.02]"
+                src="/assets/images/mobile-with-logo.jpg"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+              <span className="absolute bottom-4 left-4 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-white/72">
+                Mobile Detailing
+              </span>
+            </div>
+
+            <div className="group relative h-56 overflow-hidden rounded-xl border border-cyan-300/15 bg-black/30 shadow-[0_0_24px_rgba(0,217,255,0.04)] sm:h-64 lg:h-auto">
+              <img
+                alt="VVS Haus branded hoodie"
+                className="h-full w-full object-cover object-[68%_50%] brightness-[0.98] contrast-[1.06] saturate-[1.02] transition duration-700 group-hover:scale-[1.02]"
+                src="/assets/images/hoodie-logo.jpg"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+              <span className="absolute bottom-4 left-4 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-white/72">
+                Built On Passion
+              </span>
+            </div>
+
+            <div className="group relative h-56 overflow-hidden rounded-xl border border-cyan-300/15 bg-black/30 shadow-[0_0_24px_rgba(0,217,255,0.04)] sm:h-64 lg:h-auto">
+              <img
+                alt="VVS Haus business card displayed on a detailed vehicle"
+                className="h-full w-full object-cover object-[72%_50%] brightness-[0.98] contrast-[1.06] saturate-[1.02] transition duration-700 group-hover:scale-[1.02]"
+                src="/assets/images/card-on-car.jpg"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+              <span className="absolute bottom-4 left-4 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-white/72">
+                Attention To Detail
+              </span>
+            </div>
+          </div>
         </motion.div>
 
         <motion.div

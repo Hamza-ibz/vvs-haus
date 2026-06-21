@@ -91,29 +91,16 @@ function Contact() {
   return (
     <div className="min-h-screen bg-[#050505] text-white">
       <section className="relative overflow-hidden border-b border-white/10 bg-[#050505] pt-32 sm:pt-36 lg:pt-28">
-        <motion.div
-          aria-hidden="true"
-          animate={{ scale: 1 }}
-          className="absolute inset-0"
-          initial={{ scale: 1.04 }}
-          transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <img
-            alt=""
-            className="h-full w-full object-cover object-center brightness-[0.88] contrast-[1.1]"
-            src="/assets/images/van-car.jpg"
-          />
-        </motion.div>
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.95)_0%,rgba(5,5,5,0.76)_34%,rgba(5,5,5,0.18)_70%,rgba(5,5,5,0.64)_100%)]"
+          className="absolute inset-0 bg-[#050505]"
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.2)_0%,rgba(5,5,5,0.84)_100%)]"
+          className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#050505] to-transparent"
         />
 
-        <div className="relative mx-auto grid min-h-[29rem] max-w-[92rem] items-center px-6 pb-9 sm:px-8 lg:grid-cols-[0.64fr_1fr] lg:px-16 2xl:px-20">
+        <div className="relative mx-auto grid min-h-[29rem] max-w-[92rem] items-center gap-8 px-6 pb-9 sm:px-8 lg:grid-cols-[0.64fr_1fr] lg:px-16 2xl:px-20">
           <motion.div
             animate="visible"
             className="max-w-xl pt-8 lg:pt-12"
@@ -162,6 +149,29 @@ function Contact() {
                 </div>
               ))}
             </motion.div>
+          </motion.div>
+
+          <motion.div
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            className="relative hidden self-end lg:block"
+            initial={{ opacity: 0, x: 28, scale: 1.02 }}
+            transition={{ delay: 0.12, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="relative ml-auto h-[25rem] overflow-hidden">
+              <img
+                alt="VVS Haus mobile detailing van and Mercedes ready for booking"
+                className="h-full w-full object-cover object-center brightness-[1.12] contrast-[1.08] saturate-[1.05]"
+                src="/assets/images/van-car.jpg"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-[linear-gradient(90deg,#050505_0%,rgba(5,5,5,0)_18%,rgba(5,5,5,0)_78%,#050505_100%)]"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-[linear-gradient(180deg,#050505_0%,rgba(5,5,5,0)_18%,rgba(5,5,5,0)_76%,#050505_100%)]"
+              />
+            </div>
           </motion.div>
         </div>
       </section>
