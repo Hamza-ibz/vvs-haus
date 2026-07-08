@@ -202,14 +202,14 @@ function Services() {
           <SectionTitle eyebrow="Packages">Core Detailing Packages</SectionTitle>
 
           <motion.div
-            className="mt-12 grid gap-5 xl:grid-cols-3"
+            className="mt-12 grid items-stretch gap-5 xl:grid-cols-3"
             initial="hidden"
             transition={{ staggerChildren: 0.08 }}
             viewport={{ once: true, amount: 0.16 }}
             whileInView="visible"
           >
             {coreDetailingPackages.map((packageData) => (
-              <motion.div key={packageData.id} variants={fadeUp}>
+              <motion.div className="h-full" key={packageData.id} variants={fadeUp}>
                 <PackageCard
                   badges={packageBadges[packageData.slug] ?? []}
                   packageData={packageData}

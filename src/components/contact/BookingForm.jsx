@@ -1,16 +1,21 @@
-import { AnimatePresence, motion } from 'framer-motion'
-import { ChevronRight, ShieldCheck } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { ChevronRight, MessageCircle, ShieldCheck } from 'lucide-react'
 import { useMemo, useState } from 'react'
 
 import useReducedMotionPreference from '../../hooks/useReducedMotionPreference'
-import { cardReveal, premiumEase, subtleStagger } from '../../utils/animations'
+import { cardReveal, subtleStagger } from '../../utils/animations'
+
+// Replace with the VVS Haus WhatsApp number in international format:
+// no "+" symbol, no spaces, and remove the first "0" from a UK mobile.
+// Example: 07123 456789 becomes 447123456789.
+const WHATSAPP_NUMBER = '447802273916'
 
 const initialValues = {
   fullName: '',
   contactNumber: '',
   vehicle: '',
   address: '',
-  desiredPackage: '',
+  package: '',
   additionalServices: '',
   preferredDate: '',
   preferredTime: '',
@@ -22,10 +27,38 @@ const requiredFields = [
   'contactNumber',
   'vehicle',
   'address',
-  'desiredPackage',
+  'package',
   'preferredDate',
   'preferredTime',
 ]
+
+function formatDateForWhatsApp(value) {
+  if (!value) return value
+
+  const [year, month, day] = value.split('-')
+
+  if (!year || !month || !day || year.length !== 4) {
+    return value
+  }
+
+  return `${day}/${month}/${year}`
+}
+
+function getFormValue(formData, name) {
+  return String(formData.get(name) ?? '').trim()
+}
+
+function openWhatsAppInNewTab(whatsappUrl) {
+  const link = document.createElement('a')
+
+  link.href = whatsappUrl
+  link.target = '_blank'
+  link.rel = 'noopener noreferrer'
+
+  document.body.appendChild(link)
+  link.click()
+  link.remove()
+}
 
 function FormField({
   as = 'input',
@@ -78,7 +111,6 @@ function FormField({
 function BookingForm({ packageOptions }) {
   const [values, setValues] = useState(initialValues)
   const [errors, setErrors] = useState({})
-  const [statusMessage, setStatusMessage] = useState('')
   const prefersReducedMotion = useReducedMotionPreference()
 
   const options = useMemo(() => ['Select a package', ...packageOptions], [packageOptions])
@@ -101,9 +133,16 @@ function BookingForm({ packageOptions }) {
 
   const handleSubmit = (event) => {
     event.preventDefault()
+    const form = event.currentTarget
+
+    if (!form.reportValidity()) {
+      return
+    }
+
+    const formData = new FormData(form)
 
     const nextErrors = requiredFields.reduce((fieldErrors, field) => {
-      if (!values[field].trim()) {
+      if (!getFormValue(formData, field)) {
         return {
           ...fieldErrors,
           [field]: 'This field is required.',
@@ -116,13 +155,53 @@ function BookingForm({ packageOptions }) {
     setErrors(nextErrors)
 
     if (Object.keys(nextErrors).length > 0) {
-      setStatusMessage('')
+      const firstInvalidField = Object.keys(nextErrors)[0]
+      form.elements[firstInvalidField]?.focus()
       return
     }
 
-    setStatusMessage(
-      'Thank you. Your booking request has been prepared. We will contact you to confirm availability and pricing.',
-    )
+    const fullName = getFormValue(formData, 'fullName')
+    const contactNumber = getFormValue(formData, 'contactNumber')
+    const vehicle = getFormValue(formData, 'vehicle')
+    const address = getFormValue(formData, 'address')
+    const selectedPackage = getFormValue(formData, 'package')
+    const additionalServices = getFormValue(formData, 'additionalServices') || 'None selected'
+    const preferredDate = formatDateForWhatsApp(getFormValue(formData, 'preferredDate'))
+    const preferredTime = getFormValue(formData, 'preferredTime')
+    const additionalInformation = getFormValue(formData, 'additionalInformation')
+      || 'No additional information provided'
+
+    const message = `✨ *VVS HAUS BOOKING REQUEST*
+
+Hello VVS Haus,
+
+I would like to request a mobile detailing appointment. Please find my booking details below.
+
+👤 *CUSTOMER DETAILS*
+• *Full name:* ${fullName}
+• *Contact number:* ${contactNumber}
+
+🚘 *VEHICLE & SERVICE*
+• *Vehicle:* ${vehicle}
+• *Desired package:* ${selectedPackage}
+• *Additional services:* ${additionalServices}
+
+📍 *SERVICE LOCATION*
+• *Address / postcode:* ${address}
+
+📅 *PREFERRED APPOINTMENT*
+• *Date:* ${preferredDate}
+• *Time:* ${preferredTime}
+
+📝 *ADDITIONAL INFORMATION*
+${additionalInformation}
+
+Please confirm availability, the final price, any applicable travel charges, and whether a deposit is required.
+
+Thank you.`
+
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
+    openWhatsAppInNewTab(whatsappUrl)
   }
 
   return (
@@ -130,7 +209,6 @@ function BookingForm({ packageOptions }) {
       className="mt-7 grid gap-5"
       id="booking-form"
       initial={prefersReducedMotion ? false : 'hidden'}
-      noValidate
       onSubmit={handleSubmit}
       variants={prefersReducedMotion ? undefined : subtleStagger}
       viewport={{ once: true, amount: 0.16 }}
@@ -198,13 +276,13 @@ function BookingForm({ packageOptions }) {
       <motion.div variants={prefersReducedMotion ? undefined : cardReveal}>
         <FormField
           as="select"
-          error={errors.desiredPackage}
+          error={errors.package}
           id="desired-package"
           label="Desired Package"
-          name="desiredPackage"
+          name="package"
           onChange={updateValue}
           required
-          value={values.desiredPackage}
+          value={values.package}
         >
           {options.map((option, index) => (
             <option disabled={index === 0} key={option} value={index === 0 ? '' : option}>
@@ -270,7 +348,12 @@ function BookingForm({ packageOptions }) {
         whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
         whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
       >
-        Request Booking
+        <MessageCircle
+          aria-hidden="true"
+          className="text-cyan-300 transition group-hover:scale-105"
+          size={18}
+        />
+        Send Booking Request via WhatsApp
         <ChevronRight
           aria-hidden="true"
           className="text-cyan-300 transition group-hover:translate-x-1"
@@ -278,26 +361,14 @@ function BookingForm({ packageOptions }) {
         />
       </motion.button>
 
-      <motion.p className="flex items-center gap-3 text-xs text-white/58" variants={prefersReducedMotion ? undefined : cardReveal}>
-        <ShieldCheck aria-hidden="true" className="text-cyan-300" size={17} />
-        Your details will only be used to respond to your booking request.
+      <motion.p className="-mt-2 text-xs leading-5 text-white/52" variants={prefersReducedMotion ? undefined : cardReveal}>
+        Submitting this form opens WhatsApp. Your request is not sent until you press Send.
       </motion.p>
 
-      <AnimatePresence>
-        {statusMessage ? (
-          <motion.p
-            animate={{ opacity: 1, y: 0 }}
-            aria-live="polite"
-            className="border border-cyan-300/30 bg-cyan-300/[0.07] px-4 py-3 text-sm leading-6 text-white"
-            exit={{ opacity: 0, y: -8 }}
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 10 }}
-            role="status"
-            transition={{ duration: 0.26, ease: premiumEase }}
-          >
-            {statusMessage}
-          </motion.p>
-        ) : null}
-      </AnimatePresence>
+      <motion.p className="flex items-center gap-3 text-xs text-white/58" variants={prefersReducedMotion ? undefined : cardReveal}>
+        <ShieldCheck aria-hidden="true" className="text-cyan-300" size={17} />
+        Your details will only be used to prepare your WhatsApp booking request. You will be able to review the message before sending it.
+      </motion.p>
     </motion.form>
   )
 }

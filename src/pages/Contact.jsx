@@ -69,7 +69,7 @@ const serviceAreaPoints = [
     Icon: MapPin,
   },
   {
-    title: 'E2 Service Radius',
+    title: 'Bethnal Green Service Radius',
     text: 'Additional travel charges may apply beyond 5 miles.',
     Icon: Home,
   },
@@ -81,11 +81,21 @@ const serviceAreaPoints = [
 ]
 
 const mapLabels = [
-  { label: '5 Mile Radius', className: 'left-[14%] top-[26%]' },
-  { label: 'Travel Charges May Apply', className: 'right-[10%] top-[34%]' },
-  { label: 'E2', className: 'left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-lg sm:text-2xl' },
-  { label: 'Mobile Detailing', className: 'left-[18%] bottom-[28%]' },
-  { label: 'Congestion Zone Surcharge', className: 'right-[10%] bottom-[24%]' },
+  {
+    label: 'Travel Charges May Apply',
+    className: 'right-5 top-[25%] text-right sm:right-[8%] sm:top-[30%]',
+    connector: 'right-[22%] top-[32%] h-px w-16 rotate-[168deg] sm:w-20',
+  },
+  {
+    label: 'Mobile Detailing',
+    className: 'left-5 bottom-[19%] sm:left-[14%] sm:bottom-[25%]',
+    connector: 'left-[26%] bottom-[31%] h-px w-14 rotate-[-18deg] sm:w-20',
+  },
+  {
+    label: 'Congestion Zone Surcharge',
+    className: 'right-5 bottom-[15%] text-right sm:right-[8%] sm:bottom-[22%]',
+    connector: 'right-[26%] bottom-[28%] h-px w-14 rotate-[20deg] sm:w-20',
+  },
 ]
 
 function Contact() {
@@ -237,7 +247,7 @@ function Contact() {
               We Come To <span className="text-cyan-300">You</span>
             </h2>
             <p className="mx-auto mt-5 max-w-3xl text-sm leading-7 text-white/70 sm:text-base">
-              VVS Haus provides professional mobile detailing from the E2 area.
+              VVS Haus provides professional mobile detailing from Bethnal Green, E2.
               Travel charges may apply to appointments beyond a 5-mile radius.
             </p>
           </div>
@@ -270,30 +280,63 @@ function Contact() {
               />
               <motion.div
                 aria-hidden="true"
-                className="absolute left-1/2 top-1/2 h-[11rem] w-[11rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-300/20"
-                animate={prefersReducedMotion ? undefined : { opacity: [0.44, 0.82, 0.44], scale: [1, 1.06, 1] }}
+                className="absolute left-1/2 top-1/2 h-[11rem] w-[11rem] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-cyan-300/45 shadow-[0_0_34px_rgba(0,217,255,0.14)]"
+                animate={prefersReducedMotion ? undefined : { opacity: [0.62, 0.95, 0.62], scale: [1, 1.055, 1] }}
                 transition={{ duration: 4.8, ease: 'easeInOut', repeat: Infinity }}
               />
+              <div className="absolute left-1/2 top-1/2 z-20 flex -translate-x-1/2 -translate-y-[calc(100%+1.35rem)] flex-col items-center text-center">
+                <span className="font-['Orbitron'] text-base font-semibold uppercase tracking-[0.08em] text-white sm:text-xl">
+                  Bethnal Green
+                </span>
+              </div>
               <motion.span
                 aria-hidden="true"
                 animate={prefersReducedMotion ? undefined : { opacity: [0.65, 1, 0.65], scale: [1, 1.2, 1] }}
-                className="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300 shadow-[0_0_22px_rgba(0,217,255,0.8)]"
+                className="absolute left-1/2 top-1/2 z-20 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-200 bg-cyan-300/20 shadow-[0_0_22px_rgba(0,217,255,0.8)]"
                 transition={{ duration: 3.6, ease: 'easeInOut', repeat: Infinity }}
               />
-              <p className="absolute left-6 top-6 max-w-48 text-[0.62rem] uppercase tracking-[0.18em] text-white/42">
-                Decorative radius visual, not a precise coverage map
-              </p>
-              {mapLabels.map(({ className, label }) => (
+              <div className="absolute left-5 top-5 z-20 max-w-52 sm:left-6 sm:top-6">
+                <p className="text-[0.58rem] uppercase leading-5 tracking-[0.18em] text-white/44 sm:text-[0.62rem]">
+                  Decorative radius visual,
+                  <br />
+                  not a precise coverage map
+                </p>
+                <span className="mt-3 block h-px w-14 bg-cyan-300 shadow-[0_0_14px_rgba(0,217,255,0.65)]" />
+              </div>
+              <div className="absolute left-5 top-[31%] z-20 max-w-[10rem] sm:left-[9%] sm:top-[34%]">
+                <p className="font-['Orbitron'] text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-white">
+                  5 Mile Radius
+                </p>
+                <p className="mt-3 text-xs leading-5 text-white/55">
+                  Locations within
+                  <br />
+                  5 mile radius to
+                  <br />
+                  <span className="font-semibold text-cyan-300">Bethnal Green</span>
+                </p>
                 <span
-                  className={[
-                    'absolute font-["Orbitron"] text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-white/82',
-                    label === 'E2' ? 'text-white' : '',
-                    className,
-                  ].join(' ')}
-                  key={label}
-                >
-                  {label}
-                </span>
+                  aria-hidden="true"
+                  className="mt-4 block h-px w-20 bg-gradient-to-r from-cyan-300/70 to-transparent"
+                />
+              </div>
+              {mapLabels.map(({ className, connector, label }) => (
+                <div key={label}>
+                  <span
+                    aria-hidden="true"
+                    className={[
+                      'absolute z-10 hidden origin-center bg-gradient-to-r from-cyan-300/45 to-transparent shadow-[0_0_12px_rgba(0,217,255,0.25)] sm:block',
+                      connector,
+                    ].join(' ')}
+                  />
+                  <span
+                    className={[
+                      'absolute z-20 max-w-36 font-["Orbitron"] text-[0.58rem] font-semibold uppercase leading-5 tracking-[0.12em] text-white/82 sm:text-[0.62rem]',
+                      className,
+                    ].join(' ')}
+                  >
+                    {label}
+                  </span>
+                </div>
               ))}
             </div>
           </div>

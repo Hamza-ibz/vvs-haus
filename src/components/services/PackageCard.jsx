@@ -88,7 +88,7 @@ function PackageCard({ badges = [], packageData, tone = 'standard' }) {
   return (
     <motion.article
       className={[
-        'relative flex min-h-full flex-col overflow-hidden border bg-[#070707]/92 shadow-[0_22px_80px_rgba(0,0,0,0.36)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-300/55',
+        'relative flex h-full min-h-full flex-col overflow-hidden border bg-[#070707]/92 shadow-[0_22px_80px_rgba(0,0,0,0.36)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyan-300/55',
         isFeatured
           ? 'border-cyan-300/50 shadow-[0_0_46px_rgba(0,217,255,0.14)]'
           : 'border-white/[0.12]',
@@ -159,17 +159,19 @@ function PackageCard({ badges = [], packageData, tone = 'standard' }) {
           <InclusionGroup items={interior} title="Interior Inclusions" />
         </div>
 
-        <Link
-          className="group mt-6 inline-flex items-center justify-center gap-3 border border-cyan-300/65 bg-black/35 px-6 py-4 text-xs font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_24px_rgba(0,217,255,0.13)] transition duration-300 hover:-translate-y-0.5 hover:border-cyan-200 hover:shadow-[0_0_34px_rgba(0,217,255,0.24)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
-          to="/contact"
-        >
-          Book This Package
-          <ChevronRight
-            aria-hidden="true"
-            className="text-cyan-300 transition group-hover:translate-x-1"
-            size={16}
-          />
-        </Link>
+        <div className="mt-auto pt-6">
+          <Link
+            className="group inline-flex h-14 w-full items-center justify-center gap-3 border border-cyan-300/65 bg-black/35 px-6 text-xs font-bold uppercase tracking-[0.18em] text-white shadow-[0_0_24px_rgba(0,217,255,0.13)] transition duration-300 hover:-translate-y-0.5 hover:border-cyan-200 hover:shadow-[0_0_34px_rgba(0,217,255,0.24)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+            to="/contact"
+          >
+            Book This Package
+            <ChevronRight
+              aria-hidden="true"
+              className="text-cyan-300 transition group-hover:translate-x-1"
+              size={16}
+            />
+          </Link>
+        </div>
       </div>
     </motion.article>
   )
