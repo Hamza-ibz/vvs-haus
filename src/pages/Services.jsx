@@ -141,7 +141,7 @@ function Services() {
             >
               Precision
               <br />
-              In Every <span className="text-cyan-300">Detail.</span>
+              In Every <span className="text-cyan-300">Detail</span>
             </motion.h1>
             <motion.p
               className="mt-6 max-w-md text-base leading-8 text-white/78 sm:text-lg"

@@ -149,9 +149,9 @@ function About() {
               className="font-['Orbitron'] text-4xl font-semibold uppercase leading-[1.16] tracking-[0.05em] text-white sm:text-5xl lg:text-[3.4rem]"
               variants={fadeUp}
             >
-              Built Different.
+              Built Different
               <br />
-              Driven By <span className="text-cyan-300">Passion.</span>
+              <span className="text-cyan-300">Driven By Passion</span>
             </motion.h1>
             <motion.div className="mt-6 border-l-2 border-cyan-300/80 pl-5" variants={fadeUp}>
               <p className="font-['Orbitron'] text-sm font-semibold uppercase tracking-[0.18em] text-white">

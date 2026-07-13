@@ -164,7 +164,7 @@ function Gallery() {
             >
               Results That Speak
               <br />
-              For <span className="text-cyan-300">Themselves.</span>
+              <span className="text-cyan-300">For Themselves</span>
             </motion.h1>
             <motion.p
               className="mt-6 max-w-md text-base leading-8 text-white/78 sm:text-lg"

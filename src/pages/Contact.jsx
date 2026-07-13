@@ -133,9 +133,9 @@ function Contact() {
               className="font-['Orbitron'] text-4xl font-semibold uppercase leading-[1.16] tracking-[0.05em] text-white sm:text-5xl lg:text-[3.35rem]"
               variants={fadeUp}
             >
-              We Come To You.
+              We Bring The Detail
               <br />
-              You <span className="text-cyan-300">Relax.</span>
+              <span className="text-cyan-300">You Enjoy The Finish</span>
             </motion.h1>
             <motion.span
               className="mt-6 block h-px w-14 bg-cyan-300 shadow-[0_0_18px_rgba(0,217,255,0.65)]"
@@ -350,16 +350,9 @@ function Contact() {
                 <p className="font-['Orbitron'] text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-white">
                   5 Mile Radius
                 </p>
-                <p className="mt-3 text-xs leading-5 text-white/55">
-                  Locations within
-                  <br />
-                  5 mile radius to
-                  <br />
-                  <span className="font-semibold text-cyan-300">Bethnal Green</span>
-                </p>
                 <span
                   aria-hidden="true"
-                  className="mt-4 block h-px w-20 bg-gradient-to-r from-cyan-300/70 to-transparent"
+                  className="mt-3 block h-px w-20 bg-gradient-to-r from-cyan-300/70 to-transparent"
                 />
               </div>
               {mapLabels.map(({ className, connector, label }) => (

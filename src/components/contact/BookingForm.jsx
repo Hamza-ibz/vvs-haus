@@ -171,29 +171,38 @@ function BookingForm({ packageOptions }) {
     const additionalInformation = getFormValue(formData, 'additionalInformation')
       || 'No additional information provided'
 
-    const message = `\u2728 *VVS HAUS BOOKING REQUEST*
+    const emojis = {
+      sparkles: String.fromCodePoint(0x2728),
+      person: String.fromCodePoint(0x1F464),
+      car: String.fromCodePoint(0x1F697),
+      location: String.fromCodePoint(0x1F4CD),
+      calendar: String.fromCodePoint(0x1F4C5),
+      note: String.fromCodePoint(0x1F4DD),
+    }
+
+    const message = `${emojis.sparkles} *VVS HAUS BOOKING REQUEST*
 
 Hello VVS Haus,
 
 I would like to request a mobile detailing appointment. Please find my booking details below.
 
-\u{1F464} *CUSTOMER DETAILS*
+${emojis.person} *CUSTOMER DETAILS*
 • *Full name:* ${fullName}
 • *Contact number:* ${contactNumber}
 
-\u{1F697} *VEHICLE & SERVICE*
+${emojis.car} *VEHICLE & SERVICE*
 • *Vehicle:* ${vehicle}
 • *Desired package:* ${selectedPackage}
 • *Additional services:* ${additionalServices}
 
-\u{1F4CD} *SERVICE LOCATION*
+${emojis.location} *SERVICE LOCATION*
 • *Address / postcode:* ${address}
 
-\u{1F4C5} *PREFERRED APPOINTMENT*
+${emojis.calendar} *PREFERRED APPOINTMENT*
 • *Date:* ${preferredDate}
 • *Time:* ${preferredTime}
 
-\u{1F4DD} *ADDITIONAL INFORMATION*
+${emojis.note} *ADDITIONAL INFORMATION*
 ${additionalInformation}
 
 Please confirm availability, the final price, any applicable travel charges, and whether a deposit is required.
@@ -353,7 +362,7 @@ Thank you.`
           className="text-cyan-300 transition group-hover:scale-105"
           size={18}
         />
-        Send Booking Request via WhatsApp
+        Send Booking Request
         <ChevronRight
           aria-hidden="true"
           className="text-cyan-300 transition group-hover:translate-x-1"

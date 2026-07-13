@@ -6,7 +6,7 @@ export const socialLinks = [
   },
   {
     name: 'TikTok',
-    url: 'https://www.tiktok.com/@vvs_haus',
+    url: 'https://www.tiktok.com/@vvshaus?_r=1&_t=ZN-980XBDBoqtq',
     handle: '@vvs_haus',
   },
   {
