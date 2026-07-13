@@ -182,187 +182,187 @@ function Home() {
   return (
     <div className="min-h-screen bg-[#050505] text-white">
       <section className="relative left-1/2 min-h-[100svh] w-screen -translate-x-1/2 overflow-hidden bg-[#050505] px-5 pb-0 pt-20 text-white sm:px-8 sm:pt-24 lg:h-svh lg:min-h-[700px] lg:px-12 lg:pb-5">
-      <motion.img
-        alt="VVS Haus cinematic mobile detailing background"
-        animate={{ opacity: 1, scale: 1.025 }}
-        className="absolute inset-0 hidden h-full w-full object-cover object-[center_56%] brightness-[1.3] contrast-[1.08] lg:block"
-        initial={{ opacity: 0, scale: 1.06 }}
-        ref={heroImageRef}
-        src={heroBackground}
-        transition={{ duration: 1.3, ease: 'easeOut' }}
-      />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.18)_0%,rgba(5,5,5,0.02)_25%,rgba(5,5,5,0.18)_53%,rgba(5,5,5,0.86)_100%)] lg:bg-[linear-gradient(180deg,rgba(5,5,5,0.34)_0%,rgba(5,5,5,0.06)_34%,rgba(5,5,5,0.1)_60%,rgba(5,5,5,0.62)_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_31%,rgba(0,217,255,0.055),transparent_18rem)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.16)_0%,rgba(5,5,5,0.02)_26%,rgba(5,5,5,0)_50%,rgba(5,5,5,0.02)_74%,rgba(5,5,5,0.18)_100%)] lg:bg-[linear-gradient(90deg,rgba(5,5,5,0.38)_0%,rgba(5,5,5,0.08)_28%,rgba(5,5,5,0.04)_50%,rgba(5,5,5,0.09)_72%,rgba(5,5,5,0.44)_100%)]" />
-      <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#050505]/54 to-transparent lg:h-44 lg:from-[#050505]/70" />
-      <div className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-[#050505]/95 via-[#050505]/58 to-transparent lg:h-64 lg:from-[#050505]/82 lg:via-[#050505]/42" />
-      <motion.div
-        aria-hidden="true"
-        animate={{ x: ['-120%', '120%'], opacity: [0, 0.32, 0] }}
-        className="absolute top-[40%] h-px w-1/2 rotate-[-12deg] bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent blur-[1px]"
-        initial={{ x: '-120%', opacity: 0 }}
-        transition={{ delay: 1.1, duration: 4.8, ease: 'easeInOut', repeat: Infinity, repeatDelay: 4 }}
-      />
-
-      <motion.div
-        animate="visible"
-        className="relative z-10 mx-auto flex min-h-[calc(100svh-5rem)] max-w-[92rem] flex-col items-center justify-start text-center lg:h-full lg:min-h-0 lg:justify-end"
-        initial="hidden"
-        variants={container}
-      >
-        <div className="flex w-full flex-1 flex-col items-center justify-start pb-4 pt-3 sm:pt-4 lg:mt-10 lg:justify-center lg:pb-1 lg:pt-0">
-          <motion.div
-            className="relative -mx-5 mb-4 block w-[calc(100%+2.5rem)] overflow-visible sm:-mx-8 sm:mb-5 sm:w-[calc(100%+4rem)] lg:hidden"
-            variants={item}
-          >
-            <img
-              alt="VVS Haus branded van and black Mercedes in a cinematic detailing studio"
-              className="h-auto w-full max-w-none object-contain brightness-[1.25] contrast-[1.1]"
-              src={heroBackground}
-            />
-            <div className="absolute left-1/2 top-[10%] w-[50vw] max-w-[11.25rem] -translate-x-1/2 sm:top-[11%] sm:max-w-[14rem]">
-              <motion.img
-                alt="VVS Haus diamond"
-                animate={{
-                  filter: [
-                    'drop-shadow(0 0 14px rgba(0,217,255,0.58))',
-                    'drop-shadow(0 0 22px rgba(0,217,255,0.72))',
-                    'drop-shadow(0 0 14px rgba(0,217,255,0.58))',
-                  ],
-                  y: [0, -5, 0],
-                }}
-                className="h-auto w-full object-contain"
-                src={heroLogo}
-                transition={{
-                  filter: { duration: 4.8, ease: 'easeInOut', repeat: Infinity },
-                  y: { duration: 5.8, ease: 'easeInOut', repeat: Infinity },
-                }}
-              />
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="relative hidden items-center justify-center overflow-visible lg:-mb-16 lg:flex lg:h-[34rem] lg:w-[34rem] 2xl:-mb-20 2xl:h-[36rem] 2xl:w-[36rem]"
-            variants={item}
-          >
-            <div className="relative h-full w-full overflow-visible lg:translate-y-16 lg:overflow-hidden">
-              <motion.img
-                alt="VVS Haus diamond"
-                animate={{
-                  filter: [
-                    'drop-shadow(0 0 14px rgba(0,217,255,0.58))',
-                    'drop-shadow(0 0 22px rgba(0,217,255,0.72))',
-                    'drop-shadow(0 0 14px rgba(0,217,255,0.58))',
-                  ],
-                  y: [0, -7, 0],
-                }}
-                className="relative h-full w-full object-contain drop-shadow-[0_0_14px_rgba(0,217,255,0.58)]"
-                src={heroLogo}
-                transition={{
-                  filter: { duration: 4.8, ease: 'easeInOut', repeat: Infinity },
-                  y: { duration: 5.8, ease: 'easeInOut', repeat: Infinity },
-                }}
-              />
-              <motion.span
-                aria-hidden="true"
-                animate={{ opacity: [0, 1, 0, 0, 1, 0], x: ['-145%', '145%', '145%', '-145%', '-145%', '145%'] }}
-                className="pointer-events-none absolute inset-y-10 w-1/3 rotate-12 bg-gradient-to-r from-transparent via-white/35 to-transparent blur-sm"
-                initial={{ x: '-145%' }}
-                transition={{ delay: 1.5, duration: 6.8, ease: 'easeInOut', repeat: Infinity }}
-              />
-            </div>
-          </motion.div>
-
-          <motion.p
-            className="mb-2 font-['Orbitron'] text-sm uppercase tracking-[0.42em] text-white/86 sm:text-base sm:tracking-[0.5em] lg:text-2xl lg:tracking-[0.58em]"
-            variants={item}
-          >
-            Precision
-          </motion.p>
-
-          <motion.h1
-            className="max-w-6xl whitespace-nowrap font-['Orbitron'] text-[clamp(1.72rem,7.9vw,2.45rem)] font-medium uppercase leading-tight tracking-[0.075em] text-white sm:text-[clamp(2.2rem,6.6vw,3.05rem)] sm:tracking-[0.12em] lg:text-[clamp(2rem,5vw,3.95rem)] lg:leading-none lg:tracking-[0.15em]"
-            variants={item}
-          >
-            Mobile <span className="text-cyan-300 drop-shadow-[0_0_22px_rgba(0,217,255,0.45)]">Detailing</span>
-          </motion.h1>
-
-          <motion.p
-            className="mt-4 max-w-[20rem] text-[0.68rem] uppercase leading-6 tracking-[0.14em] text-white/72 sm:max-w-2xl sm:text-xs sm:tracking-[0.18em] lg:max-w-3xl lg:text-sm lg:tracking-[0.22em]"
-            variants={item}
-          >
-            Professional Mobile Detailing. Setting the Standard Since 2018.
-          </motion.p>
-
-          <motion.div
-            className="mt-5 flex w-full max-w-[45rem] flex-col gap-3 sm:max-w-[38rem] sm:flex-row sm:justify-center sm:gap-4 lg:mt-6"
-            variants={item}
-          >
-            <Link
-              className="group inline-flex min-h-12 flex-1 items-center justify-center gap-3 border border-cyan-300/70 bg-black/40 px-5 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white shadow-[0_0_34px_rgba(0,217,255,0.24)] backdrop-blur-xl transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-cyan-300 hover:text-black hover:shadow-[0_0_48px_rgba(0,217,255,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 sm:min-h-16 sm:px-7 sm:py-4 sm:text-xs sm:tracking-[0.18em]"
-              to="/contact"
-            >
-              Book Your Detail
-              <ChevronRight
-                aria-hidden="true"
-                className="text-cyan-300 transition group-hover:translate-x-1 group-hover:text-black"
-                size={18}
-              />
-            </Link>
-            <Link
-              className="group inline-flex min-h-12 flex-1 items-center justify-center gap-3 border border-white/25 bg-black/30 px-5 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-xl transition duration-300 ease-out hover:-translate-y-0.5 hover:border-cyan-300/65 hover:text-cyan-200 hover:shadow-[0_0_32px_rgba(0,217,255,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 sm:min-h-16 sm:px-7 sm:py-4 sm:text-xs sm:tracking-[0.18em]"
-              to="/services"
-            >
-              View Services
-              <ChevronRight
-                aria-hidden="true"
-                className="text-cyan-300 transition group-hover:translate-x-1"
-                size={18}
-              />
-            </Link>
-          </motion.div>
-
-          <motion.div
-            className="mt-3 text-cyan-300 drop-shadow-[0_0_16px_rgba(0,217,255,0.65)] lg:mt-4"
-            variants={item}
-          >
-            <motion.div
-              animate={{ opacity: [0.65, 1, 0.65], y: [0, 6, 0] }}
-              transition={{ delay: 1.1, duration: 2.2, ease: 'easeInOut', repeat: Infinity }}
-            >
-              <ChevronDown aria-hidden="true" size={24} strokeWidth={1.7} />
-            </motion.div>
-          </motion.div>
-        </div>
+        <motion.img
+          alt="VVS Haus cinematic mobile detailing background"
+          animate={{ opacity: 1, scale: 1.025 }}
+          className="absolute inset-0 hidden h-full w-full object-cover object-[center_56%] brightness-[1.3] contrast-[1.08] lg:block"
+          initial={{ opacity: 0, scale: 1.06 }}
+          ref={heroImageRef}
+          src={heroBackground}
+          transition={{ duration: 1.3, ease: 'easeOut' }}
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.18)_0%,rgba(5,5,5,0.02)_25%,rgba(5,5,5,0.18)_53%,rgba(5,5,5,0.86)_100%)] lg:bg-[linear-gradient(180deg,rgba(5,5,5,0.34)_0%,rgba(5,5,5,0.06)_34%,rgba(5,5,5,0.1)_60%,rgba(5,5,5,0.62)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_31%,rgba(0,217,255,0.055),transparent_18rem)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.16)_0%,rgba(5,5,5,0.02)_26%,rgba(5,5,5,0)_50%,rgba(5,5,5,0.02)_74%,rgba(5,5,5,0.18)_100%)] lg:bg-[linear-gradient(90deg,rgba(5,5,5,0.38)_0%,rgba(5,5,5,0.08)_28%,rgba(5,5,5,0.04)_50%,rgba(5,5,5,0.09)_72%,rgba(5,5,5,0.44)_100%)]" />
+        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#050505]/54 to-transparent lg:h-44 lg:from-[#050505]/70" />
+        <div className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-[#050505]/95 via-[#050505]/58 to-transparent lg:h-64 lg:from-[#050505]/82 lg:via-[#050505]/42" />
+        <motion.div
+          aria-hidden="true"
+          animate={{ x: ['-120%', '120%'], opacity: [0, 0.32, 0] }}
+          className="absolute top-[40%] h-px w-1/2 rotate-[-12deg] bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent blur-[1px]"
+          initial={{ x: '-120%', opacity: 0 }}
+          transition={{ delay: 1.1, duration: 4.8, ease: 'easeInOut', repeat: Infinity, repeatDelay: 4 }}
+        />
 
         <motion.div
-          className="-mx-5 grid w-[calc(100%+2.5rem)] shrink-0 grid-cols-4 border-y border-white/10 bg-black/48 shadow-[0_0_50px_rgba(0,217,255,0.08)] backdrop-blur-xl sm:mx-0 sm:w-full lg:bg-black/32"
-          variants={item}
+          animate="visible"
+          className="relative z-10 mx-auto flex min-h-[calc(100svh-5rem)] max-w-[92rem] flex-col items-center justify-start text-center lg:h-full lg:min-h-0 lg:justify-end"
+          initial="hidden"
+          variants={container}
         >
-          {featureStrip.map(({ Icon, label, sublabel }) => (
+          <div className="flex w-full flex-1 flex-col items-center justify-start pb-4 pt-3 sm:pt-4 lg:mt-10 lg:justify-center lg:pb-1 lg:pt-0">
             <motion.div
-              className="flex min-h-[8.6rem] flex-col items-center justify-start gap-3 border-r border-white/10 px-2 py-5 text-center last:border-r-0 sm:min-h-[9.5rem] sm:px-4 sm:py-6 lg:min-h-0 lg:flex-row lg:justify-center lg:py-4 lg:text-left"
-              key={label}
-              whileHover={{ y: -3 }}
+              className="relative -mx-5 mb-4 block w-[calc(100%+2.5rem)] overflow-visible sm:-mx-8 sm:mb-5 sm:w-[calc(100%+4rem)] lg:hidden"
+              variants={item}
             >
-              <Icon
-                aria-hidden="true"
-                className="h-7 w-7 shrink-0 text-cyan-300 drop-shadow-[0_0_16px_rgba(0,217,255,0.45)] sm:h-8 sm:w-8"
-                size={32}
-                strokeWidth={1.55}
+              <img
+                alt="VVS Haus branded van and black Mercedes in a cinematic detailing studio"
+                className="h-auto w-full max-w-none object-contain brightness-[1.25] contrast-[1.1]"
+                src={heroBackground}
               />
-              <div>
-                <p className="font-['Orbitron'] text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white sm:text-xs sm:tracking-[0.16em]">
-                  {label}
-                </p>
-                <p className="mt-1 text-[0.65rem] uppercase tracking-[0.14em] text-white/52 sm:mt-2 sm:text-xs sm:tracking-[0.16em]">
-                  {sublabel}
-                </p>
+              <div className="absolute left-1/2 top-[10%] w-[55vw] max-w-[13rem] -translate-x-1/2 sm:top-[11%] sm:max-w-[14rem]">
+                <motion.img
+                  alt="VVS Haus diamond"
+                  animate={{
+                    filter: [
+                      'drop-shadow(0 0 14px rgba(0,217,255,0.58))',
+                      'drop-shadow(0 0 22px rgba(0,217,255,0.72))',
+                      'drop-shadow(0 0 14px rgba(0,217,255,0.58))',
+                    ],
+                    y: [0, -5, 0],
+                  }}
+                  className="h-auto w-full object-contain"
+                  src={heroLogo}
+                  transition={{
+                    filter: { duration: 4.8, ease: 'easeInOut', repeat: Infinity },
+                    y: { duration: 5.8, ease: 'easeInOut', repeat: Infinity },
+                  }}
+                />
               </div>
             </motion.div>
-          ))}
+
+            <motion.div
+              className="relative hidden items-center justify-center overflow-visible lg:-mb-16 lg:flex lg:h-[34rem] lg:w-[34rem] 2xl:-mb-20 2xl:h-[36rem] 2xl:w-[36rem]"
+              variants={item}
+            >
+              <div className="relative h-full w-full overflow-visible lg:translate-y-16 lg:overflow-hidden">
+                <motion.img
+                  alt="VVS Haus diamond"
+                  animate={{
+                    filter: [
+                      'drop-shadow(0 0 14px rgba(0,217,255,0.58))',
+                      'drop-shadow(0 0 22px rgba(0,217,255,0.72))',
+                      'drop-shadow(0 0 14px rgba(0,217,255,0.58))',
+                    ],
+                    y: [0, -7, 0],
+                  }}
+                  className="relative h-full w-full object-contain drop-shadow-[0_0_14px_rgba(0,217,255,0.58)]"
+                  src={heroLogo}
+                  transition={{
+                    filter: { duration: 4.8, ease: 'easeInOut', repeat: Infinity },
+                    y: { duration: 5.8, ease: 'easeInOut', repeat: Infinity },
+                  }}
+                />
+                <motion.span
+                  aria-hidden="true"
+                  animate={{ opacity: [0, 1, 0, 0, 1, 0], x: ['-145%', '145%', '145%', '-145%', '-145%', '145%'] }}
+                  className="pointer-events-none absolute inset-y-10 w-1/3 rotate-12 bg-gradient-to-r from-transparent via-white/35 to-transparent blur-sm"
+                  initial={{ x: '-145%' }}
+                  transition={{ delay: 1.5, duration: 6.8, ease: 'easeInOut', repeat: Infinity }}
+                />
+              </div>
+            </motion.div>
+
+            <motion.p
+              className="mb-2 font-['Orbitron'] text-sm uppercase tracking-[0.42em] text-white/86 sm:text-base sm:tracking-[0.5em] lg:text-2xl lg:tracking-[0.58em]"
+              variants={item}
+            >
+              Precision
+            </motion.p>
+
+            <motion.h1
+              className="max-w-6xl whitespace-nowrap font-['Orbitron'] text-[clamp(1.72rem,7.9vw,2.45rem)] font-medium uppercase leading-tight tracking-[0.075em] text-white sm:text-[clamp(2.2rem,6.6vw,3.05rem)] sm:tracking-[0.12em] lg:text-[clamp(2rem,5vw,3.95rem)] lg:leading-none lg:tracking-[0.15em]"
+              variants={item}
+            >
+              Mobile <span className="text-cyan-300 drop-shadow-[0_0_22px_rgba(0,217,255,0.45)]">Detailing</span>
+            </motion.h1>
+
+            <motion.p
+              className="mt-4 max-w-[20rem] text-[0.68rem] uppercase leading-6 tracking-[0.14em] text-white/72 sm:max-w-2xl sm:text-xs sm:tracking-[0.18em] lg:max-w-3xl lg:text-sm lg:tracking-[0.22em]"
+              variants={item}
+            >
+              Professional Mobile Detailing. Setting the Standard Since 2018.
+            </motion.p>
+
+            <motion.div
+              className="mt-5 flex w-full max-w-[45rem] flex-col gap-3 sm:max-w-[38rem] sm:flex-row sm:justify-center sm:gap-4 lg:mt-6"
+              variants={item}
+            >
+              <Link
+                className="group inline-flex min-h-12 flex-1 items-center justify-center gap-3 border border-cyan-300/70 bg-black/40 px-5 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white shadow-[0_0_34px_rgba(0,217,255,0.24)] backdrop-blur-xl transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-cyan-300 hover:text-black hover:shadow-[0_0_48px_rgba(0,217,255,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 sm:min-h-16 sm:px-7 sm:py-4 sm:text-xs sm:tracking-[0.18em]"
+                to="/contact"
+              >
+                Book Your Detail
+                <ChevronRight
+                  aria-hidden="true"
+                  className="text-cyan-300 transition group-hover:translate-x-1 group-hover:text-black"
+                  size={18}
+                />
+              </Link>
+              <Link
+                className="group inline-flex min-h-12 flex-1 items-center justify-center gap-3 border border-white/25 bg-black/30 px-5 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-xl transition duration-300 ease-out hover:-translate-y-0.5 hover:border-cyan-300/65 hover:text-cyan-200 hover:shadow-[0_0_32px_rgba(0,217,255,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 sm:min-h-16 sm:px-7 sm:py-4 sm:text-xs sm:tracking-[0.18em]"
+                to="/services"
+              >
+                View Services
+                <ChevronRight
+                  aria-hidden="true"
+                  className="text-cyan-300 transition group-hover:translate-x-1"
+                  size={18}
+                />
+              </Link>
+            </motion.div>
+
+            <motion.div
+              className="mt-3 text-cyan-300 drop-shadow-[0_0_16px_rgba(0,217,255,0.65)] lg:mt-4"
+              variants={item}
+            >
+              <motion.div
+                animate={{ opacity: [0.65, 1, 0.65], y: [0, 6, 0] }}
+                transition={{ delay: 1.1, duration: 2.2, ease: 'easeInOut', repeat: Infinity }}
+              >
+                <ChevronDown aria-hidden="true" size={24} strokeWidth={1.7} />
+              </motion.div>
+            </motion.div>
+          </div>
+
+          <motion.div
+            className="-mx-5 grid w-[calc(100%+2.5rem)] shrink-0 grid-cols-4 border-y border-white/10 bg-black/48 shadow-[0_0_50px_rgba(0,217,255,0.08)] backdrop-blur-xl sm:mx-0 sm:w-full lg:bg-black/32"
+            variants={item}
+          >
+            {featureStrip.map(({ Icon, label, sublabel }) => (
+              <motion.div
+                className="flex min-h-[8.6rem] flex-col items-center justify-start gap-3 border-r border-white/10 px-2 py-5 text-center last:border-r-0 sm:min-h-[9.5rem] sm:px-4 sm:py-6 lg:min-h-0 lg:flex-row lg:justify-center lg:py-4 lg:text-left"
+                key={label}
+                whileHover={{ y: -3 }}
+              >
+                <Icon
+                  aria-hidden="true"
+                  className="h-7 w-7 shrink-0 text-cyan-300 drop-shadow-[0_0_16px_rgba(0,217,255,0.45)] sm:h-8 sm:w-8"
+                  size={32}
+                  strokeWidth={1.55}
+                />
+                <div>
+                  <p className="font-['Orbitron'] text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white sm:text-xs sm:tracking-[0.16em]">
+                    {label}
+                  </p>
+                  <p className="mt-1 text-[0.65rem] uppercase tracking-[0.14em] text-white/52 sm:mt-2 sm:text-xs sm:tracking-[0.16em]">
+                    {sublabel}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
-      </motion.div>
       </section>
 
       <motion.section
