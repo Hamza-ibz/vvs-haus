@@ -171,29 +171,29 @@ function BookingForm({ packageOptions }) {
     const additionalInformation = getFormValue(formData, 'additionalInformation')
       || 'No additional information provided'
 
-    const message = `✨ *VVS HAUS BOOKING REQUEST*
+    const message = `\u2728 *VVS HAUS BOOKING REQUEST*
 
 Hello VVS Haus,
 
 I would like to request a mobile detailing appointment. Please find my booking details below.
 
-👤 *CUSTOMER DETAILS*
+\u{1F464} *CUSTOMER DETAILS*
 • *Full name:* ${fullName}
 • *Contact number:* ${contactNumber}
 
-🚘 *VEHICLE & SERVICE*
+\u{1F697} *VEHICLE & SERVICE*
 • *Vehicle:* ${vehicle}
 • *Desired package:* ${selectedPackage}
 • *Additional services:* ${additionalServices}
 
-📍 *SERVICE LOCATION*
+\u{1F4CD} *SERVICE LOCATION*
 • *Address / postcode:* ${address}
 
-📅 *PREFERRED APPOINTMENT*
+\u{1F4C5} *PREFERRED APPOINTMENT*
 • *Date:* ${preferredDate}
 • *Time:* ${preferredTime}
 
-📝 *ADDITIONAL INFORMATION*
+\u{1F4DD} *ADDITIONAL INFORMATION*
 ${additionalInformation}
 
 Please confirm availability, the final price, any applicable travel charges, and whether a deposit is required.

@@ -10,8 +10,10 @@ import { Link } from 'react-router-dom'
 
 import GalleryCard from '../components/ui/GalleryCard'
 import GalleryLightbox from '../components/ui/GalleryLightbox'
+import SocialIcon from '../components/ui/SocialIcon'
 import TransformationCard from '../components/ui/TransformationCard'
 import galleryItems, { galleryFilters, transformations } from '../data/gallery'
+import { socialLinks } from '../data/socialLinks'
 
 const trustItems = [
   {
@@ -30,6 +32,10 @@ const trustItems = [
     Icon: ShieldCheck,
   },
 ]
+
+const gallerySocialLinks = socialLinks.filter(({ name }) => (
+  name === 'Instagram' || name === 'TikTok'
+))
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -323,6 +329,48 @@ function Gallery() {
             )}
           </AnimatePresence>
         </div>
+      </section>
+
+      <section className="relative overflow-hidden border-t border-white/10 bg-[#050505] px-6 py-10 sm:px-8 lg:px-16 2xl:px-20">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(0,217,255,0.12),transparent_24rem),radial-gradient(circle_at_86%_60%,rgba(0,217,255,0.08),transparent_22rem)]"
+        />
+        <motion.div
+          className="relative mx-auto flex max-w-[92rem] flex-col items-start justify-between gap-7 border border-cyan-300/18 bg-black/45 p-6 shadow-[0_0_40px_rgba(0,217,255,0.08)] sm:p-8 lg:flex-row lg:items-center"
+          initial={{ opacity: 0, y: 18 }}
+          viewport={{ once: true, amount: 0.25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+        >
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-cyan-300">
+              Follow The Finish
+            </p>
+            <h2 className="mt-4 font-['Orbitron'] text-2xl font-semibold uppercase tracking-[0.08em] text-white sm:text-3xl">
+              Want To See More <span className="text-cyan-300">Transformations?</span>
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/68 sm:text-base">
+              Follow VVS Haus for our latest details, before-and-after results and behind-the-scenes content.
+            </p>
+          </div>
+
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            {gallerySocialLinks.map((social) => (
+              <a
+                aria-label={`Open VVS Haus ${social.name} in a new tab`}
+                className="group inline-flex min-h-14 min-w-56 items-center justify-center gap-3 border border-cyan-300/55 bg-cyan-300/[0.055] px-6 py-4 text-sm font-bold uppercase tracking-[0.16em] text-white transition duration-300 hover:-translate-y-0.5 hover:border-cyan-200 hover:bg-cyan-300/[0.09] hover:shadow-[0_0_30px_rgba(0,217,255,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+                href={social.url}
+                key={social.name}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <SocialIcon className="h-4 w-4 text-cyan-300 transition group-hover:scale-110 group-hover:text-cyan-100" name={social.name} />
+                {social.name === 'Instagram' ? 'View Instagram' : 'Watch on TikTok'}
+                <ChevronRight aria-hidden="true" className="text-cyan-300 transition group-hover:translate-x-1" size={17} />
+              </a>
+            ))}
+          </div>
+        </motion.div>
       </section>
 
       <section className="relative overflow-hidden border-t border-white/10 px-6 py-7 sm:px-8 lg:px-16 2xl:px-20">

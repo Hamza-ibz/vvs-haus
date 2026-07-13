@@ -181,7 +181,7 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white">
-      <section className="relative left-1/2 h-svh min-h-[700px] w-screen -translate-x-1/2 overflow-hidden bg-[#050505] px-5 pb-4 pt-24 text-white sm:px-8 lg:min-h-0 lg:px-12">
+      <section className="relative left-1/2 min-h-[100svh] w-screen -translate-x-1/2 overflow-hidden bg-[#050505] px-5 pb-5 pt-20 text-white sm:px-8 sm:pt-24 lg:h-svh lg:min-h-[700px] lg:px-12">
       <motion.img
         alt="VVS Haus cinematic mobile detailing background"
         animate={{ opacity: 1, scale: 1.025 }}
@@ -206,16 +206,16 @@ function Home() {
 
       <motion.div
         animate="visible"
-        className="relative z-10 mx-auto flex h-full max-w-[92rem] flex-col items-center justify-end text-center"
+        className="relative z-10 mx-auto flex min-h-[calc(100svh-5rem)] max-w-[92rem] flex-col items-center justify-start text-center lg:h-full lg:min-h-0 lg:justify-end"
         initial="hidden"
         variants={container}
       >
-        <div className="flex w-full flex-1 flex-col items-center justify-center pb-1 pt-2 lg:mt-10 lg:pt-0">
+        <div className="flex w-full flex-1 flex-col items-center justify-center pb-5 pt-4 sm:pt-6 lg:mt-10 lg:pb-1 lg:pt-0">
           <motion.div
-            className="relative -mb-6 flex h-[16.5rem] w-[16.5rem] items-center justify-center overflow-visible sm:-mb-9 sm:h-[23rem] sm:w-[23rem] lg:-mb-16 lg:h-[34rem] lg:w-[34rem] 2xl:-mb-20 2xl:h-[36rem] 2xl:w-[36rem]"
+            className="relative mb-2 flex h-[12.5rem] w-[12.5rem] items-center justify-center overflow-visible sm:h-[16rem] sm:w-[16rem] lg:-mb-16 lg:h-[34rem] lg:w-[34rem] 2xl:-mb-20 2xl:h-[36rem] 2xl:w-[36rem]"
             variants={item}
           >
-            <div className="relative h-full w-full translate-y-9 overflow-hidden sm:translate-y-12 lg:translate-y-16">
+            <div className="relative h-full w-full overflow-visible lg:translate-y-16 lg:overflow-hidden">
               <motion.img
                 alt="VVS Haus diamond"
                 animate={{
@@ -244,32 +244,32 @@ function Home() {
           </motion.div>
 
           <motion.p
-            className="mb-2 font-['Orbitron'] text-base uppercase tracking-[0.58em] text-white/86 sm:text-lg lg:text-2xl"
+            className="mb-2 font-['Orbitron'] text-sm uppercase tracking-[0.42em] text-white/86 sm:text-base sm:tracking-[0.5em] lg:text-2xl lg:tracking-[0.58em]"
             variants={item}
           >
             Precision
           </motion.p>
 
           <motion.h1
-            className="max-w-6xl font-['Orbitron'] text-[clamp(2rem,5vw,3.95rem)] font-medium uppercase leading-none tracking-[0.15em] text-white"
+            className="max-w-6xl font-['Orbitron'] text-[clamp(1.55rem,7vw,2.25rem)] font-medium uppercase leading-tight tracking-[0.08em] text-white sm:text-[clamp(2rem,6vw,3rem)] sm:tracking-[0.12em] lg:text-[clamp(2rem,5vw,3.95rem)] lg:leading-none lg:tracking-[0.15em]"
             variants={item}
           >
             Mobile <span className="text-cyan-300 drop-shadow-[0_0_22px_rgba(0,217,255,0.45)]">Detailing</span>
           </motion.h1>
 
           <motion.p
-            className="mt-4 max-w-3xl text-xs uppercase leading-6 tracking-[0.22em] text-white/72 sm:text-sm"
+            className="mt-4 max-w-[20rem] text-[0.68rem] uppercase leading-6 tracking-[0.14em] text-white/72 sm:max-w-2xl sm:text-xs sm:tracking-[0.18em] lg:max-w-3xl lg:text-sm lg:tracking-[0.22em]"
             variants={item}
           >
             Professional Mobile Detailing. Setting the Standard Since 2018.
           </motion.p>
 
           <motion.div
-            className="mt-6 flex w-full max-w-[38rem] flex-col gap-4 sm:flex-row sm:justify-center"
+            className="mt-5 flex w-full max-w-[24rem] flex-col gap-3 sm:max-w-[38rem] sm:flex-row sm:justify-center sm:gap-4 lg:mt-6"
             variants={item}
           >
             <Link
-              className="group inline-flex min-h-16 flex-1 items-center justify-center gap-3 border border-cyan-300/70 bg-black/40 px-7 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-[0_0_34px_rgba(0,217,255,0.24)] backdrop-blur-xl transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-cyan-300 hover:text-black hover:shadow-[0_0_48px_rgba(0,217,255,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+              className="group inline-flex min-h-12 flex-1 items-center justify-center gap-3 border border-cyan-300/70 bg-black/40 px-5 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white shadow-[0_0_34px_rgba(0,217,255,0.24)] backdrop-blur-xl transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-cyan-300 hover:text-black hover:shadow-[0_0_48px_rgba(0,217,255,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 sm:min-h-16 sm:px-7 sm:py-4 sm:text-xs sm:tracking-[0.18em]"
               to="/contact"
             >
               Book Your Detail
@@ -280,7 +280,7 @@ function Home() {
               />
             </Link>
             <Link
-              className="group inline-flex min-h-16 flex-1 items-center justify-center gap-3 border border-white/25 bg-black/30 px-7 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-xl transition duration-300 ease-out hover:-translate-y-0.5 hover:border-cyan-300/65 hover:text-cyan-200 hover:shadow-[0_0_32px_rgba(0,217,255,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+              className="group inline-flex min-h-12 flex-1 items-center justify-center gap-3 border border-white/25 bg-black/30 px-5 py-3 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-xl transition duration-300 ease-out hover:-translate-y-0.5 hover:border-cyan-300/65 hover:text-cyan-200 hover:shadow-[0_0_32px_rgba(0,217,255,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 sm:min-h-16 sm:px-7 sm:py-4 sm:text-xs sm:tracking-[0.18em]"
               to="/services"
             >
               View Services
@@ -293,7 +293,7 @@ function Home() {
           </motion.div>
 
           <motion.div
-            className="mt-4 text-cyan-300 drop-shadow-[0_0_16px_rgba(0,217,255,0.65)]"
+            className="mt-3 text-cyan-300 drop-shadow-[0_0_16px_rgba(0,217,255,0.65)] lg:mt-4"
             variants={item}
           >
             <motion.div
@@ -306,26 +306,26 @@ function Home() {
         </div>
 
         <motion.div
-          className="grid w-full shrink-0 border-y border-white/10 bg-black/32 shadow-[0_0_50px_rgba(0,217,255,0.08)] backdrop-blur-xl sm:grid-cols-2 lg:grid-cols-4"
+          className="grid w-full shrink-0 border-y border-white/10 bg-black/48 shadow-[0_0_50px_rgba(0,217,255,0.08)] backdrop-blur-xl sm:grid-cols-2 lg:grid-cols-4 lg:bg-black/32"
           variants={item}
         >
           {featureStrip.map(({ Icon, label, sublabel }) => (
             <motion.div
-              className="flex items-center justify-center gap-4 border-white/10 px-4 py-4 text-left sm:border-r sm:[&:nth-child(2)]:border-r-0 lg:[&:nth-child(2)]:border-r lg:last:border-r-0"
+              className="flex items-center justify-center gap-3 border-white/10 px-3 py-3 text-left sm:border-r sm:px-4 sm:py-4 sm:[&:nth-child(2)]:border-r-0 lg:[&:nth-child(2)]:border-r lg:last:border-r-0"
               key={label}
               whileHover={{ y: -3 }}
             >
               <Icon
                 aria-hidden="true"
-                className="shrink-0 text-cyan-300 drop-shadow-[0_0_16px_rgba(0,217,255,0.45)]"
+                className="h-7 w-7 shrink-0 text-cyan-300 drop-shadow-[0_0_16px_rgba(0,217,255,0.45)] sm:h-8 sm:w-8"
                 size={32}
                 strokeWidth={1.55}
               />
               <div>
-                <p className="font-['Orbitron'] text-xs font-semibold uppercase tracking-[0.16em] text-white">
+                <p className="font-['Orbitron'] text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-white sm:text-xs sm:tracking-[0.16em]">
                   {label}
                 </p>
-                <p className="mt-2 text-xs uppercase tracking-[0.16em] text-white/52">
+                <p className="mt-1 text-[0.65rem] uppercase tracking-[0.14em] text-white/52 sm:mt-2 sm:text-xs sm:tracking-[0.16em]">
                   {sublabel}
                 </p>
               </div>

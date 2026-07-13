@@ -70,7 +70,7 @@ function Navbar() {
         >
           <img
             alt="VVS Haus"
-            className="h-auto w-[8.5rem] object-contain sm:w-[9.5rem] lg:w-[11.25rem]"
+            className="h-auto w-[5.25rem] object-contain sm:w-[7rem] lg:w-[11.25rem]"
             src={logoSrc}
           />
         </Link>

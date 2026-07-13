@@ -3,13 +3,16 @@ import {
   CalendarDays,
   ChevronRight,
   Clock,
+  ExternalLink,
   Home,
   MapPin,
   ShieldCheck,
 } from 'lucide-react'
 
 import BookingForm from '../components/contact/BookingForm'
+import SocialIcon from '../components/ui/SocialIcon'
 import { serviceCatalogue } from '../data/services'
+import { socialLinks } from '../data/socialLinks'
 import useReducedMotionPreference from '../hooks/useReducedMotionPreference'
 
 const {
@@ -209,10 +212,50 @@ function Contact() {
             Contact Details
           </h2>
           <div className="mt-7 border border-white/12 bg-black/30 p-6">
-            <p className="text-sm leading-7 text-white/70">
-              Approved public contact details have not been added yet. Please use
-              the booking form to prepare your request.
+            <p className="font-['Orbitron'] text-sm font-semibold uppercase tracking-[0.16em] text-white">
+              Follow <span className="text-cyan-300">Our Work</span>
             </p>
+            <p className="mt-3 text-sm leading-7 text-white/70">
+              See our latest details, vehicle transformations and behind-the-scenes content.
+            </p>
+
+            <motion.div
+              className="mt-6 grid gap-3 sm:grid-cols-2"
+              initial="hidden"
+              transition={{ staggerChildren: 0.06 }}
+              viewport={{ once: true, amount: 0.3 }}
+              whileInView="visible"
+            >
+              {socialLinks.map((social) => (
+                <motion.a
+                  aria-label={`Follow VVS Haus on ${social.name}`}
+                  className="group flex min-h-20 items-center justify-between gap-4 border border-white/10 bg-white/[0.035] p-4 transition duration-300 hover:-translate-y-0.5 hover:border-cyan-300/55 hover:bg-cyan-300/[0.055] hover:shadow-[0_0_26px_rgba(0,217,255,0.13)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300"
+                  href={social.url}
+                  key={social.name}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  variants={fadeUp}
+                >
+                  <span className="flex items-center gap-3">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-cyan-300/35 bg-cyan-300/[0.06] text-cyan-200 transition group-hover:border-cyan-200 group-hover:shadow-[0_0_20px_rgba(0,217,255,0.18)]">
+                      <SocialIcon className="h-4 w-4" name={social.name} />
+                    </span>
+                    <span>
+                      <span className="block text-xs font-bold uppercase tracking-[0.16em] text-white">
+                        {social.name}
+                      </span>
+                      <span className="mt-1 block text-xs text-white/52">{social.handle}</span>
+                    </span>
+                  </span>
+                  <ExternalLink
+                    aria-hidden="true"
+                    className="shrink-0 text-cyan-300/75 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-cyan-200"
+                    size={15}
+                    strokeWidth={1.7}
+                  />
+                </motion.a>
+              ))}
+            </motion.div>
           </div>
 
           <div className="mt-8 border border-cyan-300/24 bg-cyan-300/[0.045] p-6 shadow-[0_0_34px_rgba(0,217,255,0.1)]">
