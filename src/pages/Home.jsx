@@ -181,21 +181,21 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white">
-      <section className="relative left-1/2 min-h-[100svh] w-screen -translate-x-1/2 overflow-hidden bg-[#050505] px-5 pb-5 pt-20 text-white sm:px-8 sm:pt-24 lg:h-svh lg:min-h-[700px] lg:px-12">
+      <section className="relative left-1/2 min-h-[100svh] w-screen -translate-x-1/2 overflow-hidden bg-[#050505] px-5 pb-0 pt-20 text-white sm:px-8 sm:pt-24 lg:h-svh lg:min-h-[700px] lg:px-12 lg:pb-5">
       <motion.img
         alt="VVS Haus cinematic mobile detailing background"
         animate={{ opacity: 1, scale: 1.025 }}
-        className="absolute inset-0 h-full w-full object-cover object-[center_56%] brightness-[1.3] contrast-[1.08]"
+        className="absolute inset-0 hidden h-full w-full object-cover object-[center_56%] brightness-[1.3] contrast-[1.08] lg:block"
         initial={{ opacity: 0, scale: 1.06 }}
         ref={heroImageRef}
         src={heroBackground}
         transition={{ duration: 1.3, ease: 'easeOut' }}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.34)_0%,rgba(5,5,5,0.06)_34%,rgba(5,5,5,0.1)_60%,rgba(5,5,5,0.62)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.18)_0%,rgba(5,5,5,0.02)_25%,rgba(5,5,5,0.18)_53%,rgba(5,5,5,0.86)_100%)] lg:bg-[linear-gradient(180deg,rgba(5,5,5,0.34)_0%,rgba(5,5,5,0.06)_34%,rgba(5,5,5,0.1)_60%,rgba(5,5,5,0.62)_100%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_31%,rgba(0,217,255,0.055),transparent_18rem)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.38)_0%,rgba(5,5,5,0.08)_28%,rgba(5,5,5,0.04)_50%,rgba(5,5,5,0.09)_72%,rgba(5,5,5,0.44)_100%)]" />
-      <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-[#050505]/70 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#050505]/82 via-[#050505]/42 to-transparent" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.16)_0%,rgba(5,5,5,0.02)_26%,rgba(5,5,5,0)_50%,rgba(5,5,5,0.02)_74%,rgba(5,5,5,0.18)_100%)] lg:bg-[linear-gradient(90deg,rgba(5,5,5,0.38)_0%,rgba(5,5,5,0.08)_28%,rgba(5,5,5,0.04)_50%,rgba(5,5,5,0.09)_72%,rgba(5,5,5,0.44)_100%)]" />
+      <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#050505]/54 to-transparent lg:h-44 lg:from-[#050505]/70" />
+      <div className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-[#050505]/95 via-[#050505]/58 to-transparent lg:h-64 lg:from-[#050505]/82 lg:via-[#050505]/42" />
       <motion.div
         aria-hidden="true"
         animate={{ x: ['-120%', '120%'], opacity: [0, 0.32, 0] }}
@@ -210,9 +210,39 @@ function Home() {
         initial="hidden"
         variants={container}
       >
-        <div className="flex w-full flex-1 flex-col items-center justify-center pb-5 pt-4 sm:pt-6 lg:mt-10 lg:pb-1 lg:pt-0">
+        <div className="flex w-full flex-1 flex-col items-center justify-start pb-4 pt-3 sm:pt-4 lg:mt-10 lg:justify-center lg:pb-1 lg:pt-0">
           <motion.div
-            className="relative mb-2 flex h-[12.5rem] w-[12.5rem] items-center justify-center overflow-visible sm:h-[16rem] sm:w-[16rem] lg:-mb-16 lg:h-[34rem] lg:w-[34rem] 2xl:-mb-20 2xl:h-[36rem] 2xl:w-[36rem]"
+            className="relative -mx-5 mb-4 block w-[calc(100%+2.5rem)] overflow-visible sm:-mx-8 sm:mb-5 sm:w-[calc(100%+4rem)] lg:hidden"
+            variants={item}
+          >
+            <img
+              alt="VVS Haus branded van and black Mercedes in a cinematic detailing studio"
+              className="h-auto w-full max-w-none object-contain brightness-[1.25] contrast-[1.1]"
+              src={heroBackground}
+            />
+            <div className="absolute left-1/2 top-[10%] w-[50vw] max-w-[11.25rem] -translate-x-1/2 sm:top-[11%] sm:max-w-[14rem]">
+              <motion.img
+                alt="VVS Haus diamond"
+                animate={{
+                  filter: [
+                    'drop-shadow(0 0 14px rgba(0,217,255,0.58))',
+                    'drop-shadow(0 0 22px rgba(0,217,255,0.72))',
+                    'drop-shadow(0 0 14px rgba(0,217,255,0.58))',
+                  ],
+                  y: [0, -5, 0],
+                }}
+                className="h-auto w-full object-contain"
+                src={heroLogo}
+                transition={{
+                  filter: { duration: 4.8, ease: 'easeInOut', repeat: Infinity },
+                  y: { duration: 5.8, ease: 'easeInOut', repeat: Infinity },
+                }}
+              />
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="relative hidden items-center justify-center overflow-visible lg:-mb-16 lg:flex lg:h-[34rem] lg:w-[34rem] 2xl:-mb-20 2xl:h-[36rem] 2xl:w-[36rem]"
             variants={item}
           >
             <div className="relative h-full w-full overflow-visible lg:translate-y-16 lg:overflow-hidden">
@@ -251,7 +281,7 @@ function Home() {
           </motion.p>
 
           <motion.h1
-            className="max-w-6xl font-['Orbitron'] text-[clamp(1.55rem,7vw,2.25rem)] font-medium uppercase leading-tight tracking-[0.08em] text-white sm:text-[clamp(2rem,6vw,3rem)] sm:tracking-[0.12em] lg:text-[clamp(2rem,5vw,3.95rem)] lg:leading-none lg:tracking-[0.15em]"
+            className="max-w-6xl whitespace-nowrap font-['Orbitron'] text-[clamp(1.72rem,7.9vw,2.45rem)] font-medium uppercase leading-tight tracking-[0.075em] text-white sm:text-[clamp(2.2rem,6.6vw,3.05rem)] sm:tracking-[0.12em] lg:text-[clamp(2rem,5vw,3.95rem)] lg:leading-none lg:tracking-[0.15em]"
             variants={item}
           >
             Mobile <span className="text-cyan-300 drop-shadow-[0_0_22px_rgba(0,217,255,0.45)]">Detailing</span>
@@ -265,7 +295,7 @@ function Home() {
           </motion.p>
 
           <motion.div
-            className="mt-5 flex w-full max-w-[24rem] flex-col gap-3 sm:max-w-[38rem] sm:flex-row sm:justify-center sm:gap-4 lg:mt-6"
+            className="mt-5 flex w-full max-w-[45rem] flex-col gap-3 sm:max-w-[38rem] sm:flex-row sm:justify-center sm:gap-4 lg:mt-6"
             variants={item}
           >
             <Link
@@ -306,12 +336,12 @@ function Home() {
         </div>
 
         <motion.div
-          className="grid w-full shrink-0 border-y border-white/10 bg-black/48 shadow-[0_0_50px_rgba(0,217,255,0.08)] backdrop-blur-xl sm:grid-cols-2 lg:grid-cols-4 lg:bg-black/32"
+          className="-mx-5 grid w-[calc(100%+2.5rem)] shrink-0 grid-cols-4 border-y border-white/10 bg-black/48 shadow-[0_0_50px_rgba(0,217,255,0.08)] backdrop-blur-xl sm:mx-0 sm:w-full lg:bg-black/32"
           variants={item}
         >
           {featureStrip.map(({ Icon, label, sublabel }) => (
             <motion.div
-              className="flex items-center justify-center gap-3 border-white/10 px-3 py-3 text-left sm:border-r sm:px-4 sm:py-4 sm:[&:nth-child(2)]:border-r-0 lg:[&:nth-child(2)]:border-r lg:last:border-r-0"
+              className="flex min-h-[8.6rem] flex-col items-center justify-start gap-3 border-r border-white/10 px-2 py-5 text-center last:border-r-0 sm:min-h-[9.5rem] sm:px-4 sm:py-6 lg:min-h-0 lg:flex-row lg:justify-center lg:py-4 lg:text-left"
               key={label}
               whileHover={{ y: -3 }}
             >
